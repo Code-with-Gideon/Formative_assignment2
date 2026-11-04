@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "166386448892",
+    "project_id": "formative-assignment2",
+    "storage_bucket": "formative-assignment2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166386448892:android:6236368f5aae9bbf775a79",
+        "android_client_info": {
+          "package_name": "com.alu.campuscare.campus_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166386448892-8vtrcmm0mb5o7cqiqjdadibbdpaua1rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsZ1RTOYhQkrstzCcHubFrvBiifsPLac4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166386448892-8vtrcmm0mb5o7cqiqjdadibbdpaua1rj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

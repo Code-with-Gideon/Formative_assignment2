@@ -4,6 +4,7 @@ import '../models/incident_model.dart';
 import '../core/constants/app_colors.dart';
 import '../core/utils/date_formatter.dart';
 import 'status_badge.dart';
+import 'incident_image_view.dart';
 
 class IncidentCard extends StatelessWidget {
   final IncidentModel incident;
@@ -30,18 +31,13 @@ class IncidentCard extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Photo or Category Icon Thumbnail
-              ClipRRect(
+              // Photo Thumbnail (Firebase Storage or Fallback)
+              IncidentImageView(
+                imageUrl: incident.imageUrl,
+                category: category,
+                width: 72,
+                height: 72,
                 borderRadius: BorderRadius.circular(12),
-                child: incident.imageUrl != null && incident.imageUrl!.isNotEmpty
-                    ? Image.network(
-                        incident.imageUrl!,
-                        width: 72,
-                        height: 72,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => _buildPlaceholderIcon(),
-                      )
-                    : _buildPlaceholderIcon(),
               ),
               const SizedBox(width: 14),
 
@@ -71,7 +67,7 @@ class IncidentCard extends StatelessWidget {
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        Icon(CupertinoIcons.location_solid, size: 13, color: AppColors.primaryLight),
+                        const Icon(CupertinoIcons.location_solid, size: 13, color: AppColors.primaryLight),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
@@ -130,18 +126,6 @@ class IncidentCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildPlaceholderIcon() {
-    final category = incident.categoryInfo;
-    return Container(
-      width: 72,
-      height: 72,
-      color: category.color.withValues(alpha: 0.12),
-      child: Center(
-        child: Icon(category.icon, size: 30, color: category.color),
       ),
     );
   }

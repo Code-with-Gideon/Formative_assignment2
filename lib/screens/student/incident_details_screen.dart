@@ -7,6 +7,7 @@ import '../../core/utils/date_formatter.dart';
 import '../../services/firestore_service.dart';
 import '../../widgets/status_badge.dart';
 import '../../widgets/status_timeline.dart';
+import '../../widgets/incident_image_view.dart';
 
 class IncidentDetailsScreen extends StatelessWidget {
   final IncidentModel incident;
@@ -192,27 +193,12 @@ class IncidentDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  ClipRRect(
+                  IncidentImageView(
+                    imageUrl: liveIncident.imageUrl,
+                    category: category,
+                    width: double.infinity,
+                    height: 240,
                     borderRadius: BorderRadius.circular(14),
-                    child: Image.network(
-                      liveIncident.imageUrl!,
-                      width: double.infinity,
-                      height: 240,
-                      fit: BoxFit.cover,
-                      loadingBuilder: (ctx, child, progress) {
-                        if (progress == null) return child;
-                        return Container(
-                          height: 240,
-                          color: isDark ? AppColors.darkSurface : AppColors.lightSurface,
-                          child: const Center(child: CupertinoActivityIndicator()),
-                        );
-                      },
-                      errorBuilder: (_, _, _) => Container(
-                        height: 140,
-                        color: isDark ? AppColors.darkSurface : AppColors.lightSurface,
-                        child: const Center(child: Text('Failed to load image preview.')),
-                      ),
-                    ),
                   ),
                 ],
               ],

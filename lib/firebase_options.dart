@@ -22,22 +22,22 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDemoPlaceholderApiKeyForWeb12345',
-    appId: '1:579219635931:web:aluincidentappweb',
-    messagingSenderId: '579219635931',
-    projectId: 'alu-campuscare-demo',
-    authDomain: 'alu-campuscare-demo.firebaseapp.com',
-    storageBucket: 'alu-campuscare-demo.firebasestorage.app',
+    apiKey: 'AIzaSyAocJsdqE6ls93XIo2jsgjlxQue7p9j45Y',
+    appId: '1:166386448892:web:81be7c1ec13d3023775a79',
+    messagingSenderId: '166386448892',
+    projectId: 'formative-assignment2',
+    authDomain: 'formative-assignment2.firebaseapp.com',
+    storageBucket: 'formative-assignment2.firebasestorage.app',
+    measurementId: 'G-YS3GT6G8MJ',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDemoPlaceholderApiKeyForAndroid12',
-    appId: '1:579219635931:android:aluincidentappandroid',
-    messagingSenderId: '579219635931',
-    projectId: 'alu-campuscare-demo',
-    storageBucket: 'alu-campuscare-demo.firebasestorage.app',
+    apiKey: 'AIzaSyBsZ1RTOYhQkrstzCcHubFrvBiifsPLac4',
+    appId: '1:166386448892:android:6236368f5aae9bbf775a79',
+    messagingSenderId: '166386448892',
+    projectId: 'formative-assignment2',
+    storageBucket: 'formative-assignment2.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDemoPlaceholderApiKeyForIOS12345',
     appId: '1:579219635931:ios:aluincidentappios',
