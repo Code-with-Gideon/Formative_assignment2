@@ -24,6 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   String _selectedRole = 'student';
   bool _obscurePassword = true;
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -36,6 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _submit() async {
+    FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) return;
 
     if (_passwordController.text != _confirmPasswordController.text) {
@@ -43,10 +45,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
         const SnackBar(
           content: Text('Passwords do not match.'),
           backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
         ),
       );
       return;
     }
+
+    setState(() => _isSubmitting = true);
 
     final authProvider = context.read<AuthProvider>();
     final success = await authProvider.register(
@@ -57,13 +62,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
       studentIdNumber: _selectedRole == 'student' ? _studentIdController.text.trim() : null,
     );
 
-    if (success && mounted) {
-      Navigator.pop(context);
-    } else if (!success && mounted) {
+    if (!mounted) return;
+    setState(() => _isSubmitting = false);
+
+    if (success) {
+      if (Navigator.canPop(context)) {
+        Navigator.pop(context);
+      }
+    } else {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(authProvider.errorMessage ?? 'Registration failed.'),
+          content: Text(authProvider.errorMessage ?? 'Registration failed. Please check your information.'),
           backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 4),
         ),
       );
     }
@@ -72,7 +85,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final authProvider = context.watch<AuthProvider>();
 
     return Scaffold(
       appBar: AppBar(
@@ -81,6 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 420),
@@ -202,7 +215,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // Submit Button
                     CustomButton(
                       label: 'Create Account',
-                      isLoading: authProvider.isLoading,
+                      isLoading: _isSubmitting,
                       onPressed: _submit,
                     ),
                   ],

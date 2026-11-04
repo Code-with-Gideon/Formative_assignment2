@@ -79,7 +79,8 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = context.watch<AuthProvider>();
 
-    if (authProvider.isLoading) {
+    // Only display full-screen loading on initial app launch bootstrap
+    if (authProvider.isInitializing) {
       return const Scaffold(
         body: Center(
           child: CupertinoActivityIndicator(radius: 14),

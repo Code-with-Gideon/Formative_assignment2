@@ -103,11 +103,13 @@ class AuthService {
   String _parseAuthError(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
+        return 'No account exists for this email. Please sign up first.';
       case 'wrong-password':
+        return 'Incorrect password. Please verify and try again.';
       case 'invalid-credential':
-        return 'Incorrect email or password.';
+        return 'Incorrect email or password, or no account exists yet. Please sign up first.';
       case 'email-already-in-use':
-        return 'An account already exists for this email.';
+        return 'An account already exists for this email. Please sign in instead.';
       case 'weak-password':
         return 'Password must be at least 6 characters.';
       case 'invalid-email':
@@ -116,6 +118,10 @@ class AuthService {
         return 'Email/password sign-in is not enabled in Firebase Console.';
       case 'network-request-failed':
         return 'Network connection failed. Please check your internet connection.';
+      case 'too-many-requests':
+        return 'Too many attempts. Please wait a few moments and try again.';
+      case 'user-disabled':
+        return 'This account has been disabled. Please contact campus administration.';
       default:
         return e.message ?? 'Authentication error (${e.code})';
     }

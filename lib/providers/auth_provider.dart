@@ -7,7 +7,8 @@ class AuthProvider extends ChangeNotifier {
   final AuthService _authService;
 
   UserModel? _currentUser;
-  bool _isLoading = true;
+  bool _isInitializing = true;
+  bool _isSubmitting = false;
   String? _errorMessage;
 
   AuthProvider(this._authService) {
@@ -15,7 +16,9 @@ class AuthProvider extends ChangeNotifier {
   }
 
   UserModel? get currentUser => _currentUser;
-  bool get isLoading => _isLoading;
+  bool get isInitializing => _isInitializing;
+  bool get isSubmitting => _isSubmitting;
+  bool get isLoading => _isInitializing || _isSubmitting;
   String? get errorMessage => _errorMessage;
 
   bool get isAuthenticated => _currentUser != null;
@@ -26,7 +29,7 @@ class AuthProvider extends ChangeNotifier {
     _authService.authStateChanges.listen((User? firebaseUser) async {
       if (firebaseUser == null) {
         _currentUser = null;
-        _isLoading = false;
+        _isInitializing = false;
         notifyListeners();
       } else {
         await refreshProfile();
@@ -38,24 +41,28 @@ class AuthProvider extends ChangeNotifier {
     final user = _authService.currentFirebaseUser;
     if (user != null) {
       _currentUser = await _authService.getUserProfile(user.uid);
-      _isLoading = false;
+      _isInitializing = false;
+      notifyListeners();
+    } else {
+      _currentUser = null;
+      _isInitializing = false;
       notifyListeners();
     }
   }
 
   Future<bool> signIn(String email, String password) async {
-    _isLoading = true;
+    _isSubmitting = true;
     _errorMessage = null;
     notifyListeners();
 
     try {
       _currentUser = await _authService.signIn(email: email, password: password);
-      _isLoading = false;
+      _isSubmitting = false;
       notifyListeners();
       return true;
     } catch (e) {
       _errorMessage = e.toString();
-      _isLoading = false;
+      _isSubmitting = false;
       notifyListeners();
       return false;
     }
@@ -68,7 +75,7 @@ class AuthProvider extends ChangeNotifier {
     required String role,
     String? studentIdNumber,
   }) async {
-    _isLoading = true;
+    _isSubmitting = true;
     _errorMessage = null;
     notifyListeners();
 
@@ -80,12 +87,12 @@ class AuthProvider extends ChangeNotifier {
         role: role,
         studentIdNumber: studentIdNumber,
       );
-      _isLoading = false;
+      _isSubmitting = false;
       notifyListeners();
       return true;
     } catch (e) {
       _errorMessage = e.toString();
-      _isLoading = false;
+      _isSubmitting = false;
       notifyListeners();
       return false;
     }

@@ -25,9 +25,9 @@ class StorageService {
   }
 
   // Upload an incident photograph.
-  // Attempts Firebase Storage first. If Storage bucket is inactive (e.g. Spark plan
-  // without Blaze billing), it automatically falls back to a base64 Data URI so
-  // photo reporting continues to work 100% without crashing or requiring a credit card.
+  // Attempts Firebase Storage first with a 15-second network timeout. If Storage bucket
+  // fails or rules reject, it automatically falls back to an encoded Data URI so photo
+  // reporting continues seamlessly without ever breaking or leaving users stuck.
   Future<String?> uploadIncidentPhoto({
     required XFile file,
     required String incidentId,
@@ -54,11 +54,11 @@ class StorageService {
         uploadTask = ref.putFile(File(file.path), metadata);
       }
 
-      final snapshot = await uploadTask;
+      final snapshot = await uploadTask.timeout(const Duration(seconds: 15));
       final downloadUrl = await snapshot.ref.getDownloadURL();
       return downloadUrl;
     } catch (storageError) {
-      debugPrint('[StorageService] Firebase Storage bucket unavailable ($storageError). Falling back to direct image payload.');
+      debugPrint('[StorageService] Firebase Storage upload issue ($storageError). Using resilient direct payload.');
 
       // 2. Fallback: Encode compressed image bytes into a data URI
       try {

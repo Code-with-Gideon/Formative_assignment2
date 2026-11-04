@@ -21,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -30,7 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _submit() async {
+    FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) return;
+
+    setState(() => _isSubmitting = true);
 
     final authProvider = context.read<AuthProvider>();
     final success = await authProvider.signIn(
@@ -38,11 +42,17 @@ class _LoginScreenState extends State<LoginScreen> {
       _passwordController.text.trim(),
     );
 
-    if (!success && mounted) {
+    if (!mounted) return;
+    setState(() => _isSubmitting = false);
+
+    if (!success) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(authProvider.errorMessage ?? 'Sign in failed.'),
+          content: Text(authProvider.errorMessage ?? 'Sign in failed. Please check your credentials.'),
           backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 4),
         ),
       );
     }
@@ -51,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final authProvider = context.watch<AuthProvider>();
     final themeProvider = context.watch<ThemeProvider>();
 
     return Scaffold(
@@ -69,6 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 420),
@@ -147,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     // Login Button
                     CustomButton(
                       label: 'Sign In',
-                      isLoading: authProvider.isLoading,
+                      isLoading: _isSubmitting,
                       onPressed: _submit,
                     ),
                     const SizedBox(height: 20),
