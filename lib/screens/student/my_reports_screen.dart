@@ -44,6 +44,38 @@ class _MyReportsScreenState extends State<MyReportsScreen> {
             return const Center(child: CupertinoActivityIndicator());
           }
 
+          if (snapshot.hasError) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(CupertinoIcons.exclamationmark_triangle, size: 48, color: Colors.amber),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Unable to load your reports',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      '${snapshot.error}',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+
           final allMyReports = snapshot.data ?? [];
           final stats = incidentProvider.computeStats(allMyReports);
 

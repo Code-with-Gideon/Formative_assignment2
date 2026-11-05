@@ -41,13 +41,15 @@ class FirestoreService {
     return docRef.id;
   }
 
-  // Stream all incidents ordered by creation date
+  // Stream all incidents matching optional filters, sorted in client memory by newest first.
+  // Querying without server-side composite orderBy guarantees immediate real-time sync
+  // and zero "failed-precondition: missing composite index" errors in Firestore.
   Stream<List<IncidentModel>> getIncidentsStream({
     String? studentId,
     String? category,
     IncidentStatus? status,
   }) {
-    Query query = _incidents.orderBy('createdAt', descending: true);
+    Query query = _incidents;
 
     if (studentId != null && studentId.isNotEmpty) {
       query = query.where('studentId', isEqualTo: studentId);
@@ -60,7 +62,11 @@ class FirestoreService {
     }
 
     return query.snapshots().map((snapshot) {
-      return snapshot.docs.map((doc) => IncidentModel.fromFirestore(doc)).toList();
+      final list = snapshot.docs
+          .map((doc) => IncidentModel.fromFirestore(doc))
+          .toList();
+      list.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return list;
     });
   }
 

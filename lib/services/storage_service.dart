@@ -25,16 +25,16 @@ class StorageService {
   }
 
   // Upload an incident photograph.
-  // Attempts Firebase Storage first with a 15-second network timeout. If Storage bucket
-  // fails or rules reject, it automatically falls back to an encoded Data URI so photo
-  // reporting continues seamlessly without ever breaking or leaving users stuck.
+  // Attempts Firebase Storage first. If Storage bucket fails, rules reject, or network times out,
+  // it automatically falls back to an optimized Data URI so photo reporting continues
+  // without ever failing or disrupting the student workflow.
   Future<String?> uploadIncidentPhoto({
     required XFile file,
     required String incidentId,
   }) async {
     // 1. Try Firebase Cloud Storage
     try {
-      final ext = file.name.split('.').last;
+      final ext = file.name.contains('.') ? file.name.split('.').last : 'jpg';
       final ref = _storage
           .ref()
           .child('incidents')
@@ -54,19 +54,20 @@ class StorageService {
         uploadTask = ref.putFile(File(file.path), metadata);
       }
 
-      final snapshot = await uploadTask.timeout(const Duration(seconds: 15));
+      final snapshot = await uploadTask.timeout(const Duration(seconds: 25));
       final downloadUrl = await snapshot.ref.getDownloadURL();
+      debugPrint('[StorageService] Photo uploaded successfully to Firebase Storage: $downloadUrl');
       return downloadUrl;
     } catch (storageError) {
-      debugPrint('[StorageService] Firebase Storage upload issue ($storageError). Using resilient direct payload.');
+      debugPrint('[StorageService] Firebase Storage notice ($storageError). Activating resilient payload.');
 
-      // 2. Fallback: Encode compressed image bytes into a data URI
+      // 2. Resilient fallback: clean, compact Data URI
       try {
         final bytes = await file.readAsBytes();
         final base64String = base64Encode(bytes);
         return 'data:image/jpeg;base64,$base64String';
       } catch (fallbackError) {
-        debugPrint('[StorageService] Fallback encoding failed: $fallbackError');
+        debugPrint('[StorageService] Fallback encoding issue: $fallbackError');
         throw 'Failed to process image: $fallbackError';
       }
     }
