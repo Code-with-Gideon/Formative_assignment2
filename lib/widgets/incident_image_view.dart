@@ -1,8 +1,7 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart' show showModalBottomSheet;
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_constants.dart';
@@ -44,30 +43,7 @@ class IncidentImageView extends StatelessWidget {
       return _buildPlaceholder(context);
     }
 
-    // 1. Local file path check (for rapid local preview)
-    if (!kIsWeb && (raw.startsWith('/') || raw.contains(':\\') || raw.startsWith('file:'))) {
-      try {
-        final sanitizedPath = raw.replaceFirst('file://', '');
-        final file = File(sanitizedPath);
-        if (file.existsSync()) {
-          return Image.file(
-            file,
-            width: width,
-            height: height,
-            fit: fit,
-            errorBuilder: (_, _, _) => _buildPlaceholder(
-              context,
-              failureReason: 'Local photo inaccessible',
-              rawUrl: raw,
-            ),
-          );
-        }
-      } catch (e) {
-        debugPrint('[IncidentImageView] Local file read error: $e');
-      }
-    }
-
-    // 2. Base64 Data URI or raw Base64 string
+    // 1. Base64 Data URI or raw Base64 string
     final isDataUri = raw.startsWith('data:image');
     final isLikelyBase64 = isDataUri || (!raw.startsWith('http') && raw.length > 80);
 
@@ -102,7 +78,7 @@ class IncidentImageView extends StatelessWidget {
       }
     }
 
-    // 3. Remote HTTP / HTTPS URL (Firebase Cloud Storage)
+    // 2. Remote HTTP / HTTPS URL (Firebase Cloud Storage)
     return Image.network(
       raw,
       width: width,
@@ -123,8 +99,10 @@ class IncidentImageView extends StatelessWidget {
         final errText = error.toString();
         debugPrint('[IncidentImageView] Network image failed for URL: $raw ($errText)');
 
-        String diagnosticHint = 'Storage Rules need to allow public read';
-        if (errText.contains('Permission denied') || errText.contains('SocketException')) {
+        String diagnosticHint = 'Storage permission / connection issue';
+        if (kIsWeb && errText.contains('statusCode: 0')) {
+          diagnosticHint = 'Chrome CORS blocked (use --web-renderer html or upload)';
+        } else if (errText.contains('Permission denied') || errText.contains('SocketException')) {
           diagnosticHint = 'OS permission denied (rebuild app with flutter run)';
         } else if (errText.contains('403')) {
           diagnosticHint = 'HTTP 403: Storage Rules locked in Firebase Console';
@@ -180,7 +158,7 @@ class IncidentImageView extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
-                  'Tap to inspect diagnostics & copy URL',
+                  'Tap to inspect URL & details',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 11,
@@ -260,10 +238,13 @@ class IncidentImageView extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: CupertinoButton(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(10),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
                       onPressed: () {
                         if (url != null) {
                           Clipboard.setData(ClipboardData(text: url));
@@ -276,16 +257,19 @@ class IncidentImageView extends StatelessWidget {
                           );
                         }
                       },
-                      child: const Text('Copy URL', style: TextStyle(fontSize: 14, color: CupertinoColors.white)),
+                      child: const Text('Copy URL', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
                     ),
                   ),
                   const SizedBox(width: 10),
-                  CupertinoButton(
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                    color: AppColors.lightBorder,
-                    borderRadius: BorderRadius.circular(10),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.lightBorder,
+                      foregroundColor: AppColors.lightTextPrimary,
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    ),
                     onPressed: () => Navigator.pop(ctx),
-                    child: const Text('Close', style: TextStyle(fontSize: 14, color: AppColors.lightTextPrimary)),
+                    child: const Text('Close', style: TextStyle(fontSize: 14)),
                   ),
                 ],
               ),

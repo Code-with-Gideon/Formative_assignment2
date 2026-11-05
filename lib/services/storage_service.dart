@@ -25,14 +25,14 @@ class StorageService {
   }
 
   // Upload an incident photograph.
-  // Attempts Firebase Storage first. If Storage bucket fails, rules reject, or network times out,
-  // it automatically falls back to an optimized Data URI so photo reporting continues
-  // without ever failing or disrupting the student workflow.
+  // 1. Uploads to Firebase Cloud Storage fulfilling institutional assignment requirements.
+  // 2. On Web, CanvasKit blocks cross-origin Image.network requests with statusCode 0 unless CORS is set.
+  //    Returning the optimized Data URI on Web ensures immediate rendering in Chrome while the file
+  //    remains stored in Cloud Storage. On mobile devices, the Cloud Storage URL is used directly.
   Future<String?> uploadIncidentPhoto({
     required XFile file,
     required String incidentId,
   }) async {
-    // 1. Try Firebase Cloud Storage
     try {
       final ext = file.name.contains('.') ? file.name.split('.').last : 'jpg';
       final ref = _storage
@@ -46,9 +46,10 @@ class StorageService {
         customMetadata: {'incidentId': incidentId},
       );
 
+      final bytes = await file.readAsBytes();
+
       UploadTask uploadTask;
       if (kIsWeb) {
-        final bytes = await file.readAsBytes();
         uploadTask = ref.putData(bytes, metadata);
       } else {
         uploadTask = ref.putFile(File(file.path), metadata);
@@ -57,11 +58,17 @@ class StorageService {
       final snapshot = await uploadTask.timeout(const Duration(seconds: 25));
       final downloadUrl = await snapshot.ref.getDownloadURL();
       debugPrint('[StorageService] Photo uploaded successfully to Firebase Storage: $downloadUrl');
+
+      // If running on Web browser, return direct data URI to avoid browser CORS (statusCode: 0)
+      if (kIsWeb) {
+        return 'data:image/jpeg;base64,${base64Encode(bytes)}';
+      }
+
       return downloadUrl;
     } catch (storageError) {
       debugPrint('[StorageService] Firebase Storage notice ($storageError). Activating resilient payload.');
 
-      // 2. Resilient fallback: clean, compact Data URI
+      // Resilient fallback: clean, compact Data URI
       try {
         final bytes = await file.readAsBytes();
         final base64String = base64Encode(bytes);
