@@ -22,12 +22,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  String _selectedRole = 'student';
   bool _obscurePassword = true;
   bool _isSubmitting = false;
 
   @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(_onEmailChanged);
+  }
+
+  void _onEmailChanged() {
+    setState(() {});
+  }
+
+  String? get _detectedRole {
+    final email = _emailController.text.trim().toLowerCase();
+    if (email.endsWith('@alueducation.com')) return 'staff';
+    if (email.endsWith('@alustudent.com')) return 'student';
+    return null;
+  }
+
+  @override
   void dispose() {
+    _emailController.removeListener(_onEmailChanged);
     _nameController.dispose();
     _emailController.dispose();
     _studentIdController.dispose();
@@ -51,6 +68,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
+    final role = _detectedRole;
+    if (role == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please provide an official ALU email address (@alustudent.com or @alueducation.com).'),
+          backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+
     setState(() => _isSubmitting = true);
 
     final authProvider = context.read<AuthProvider>();
@@ -58,8 +87,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
       fullName: _nameController.text.trim(),
-      role: _selectedRole,
-      studentIdNumber: _selectedRole == 'student' ? _studentIdController.text.trim() : null,
+      role: role,
+      studentIdNumber: role == 'student' ? _studentIdController.text.trim() : null,
     );
 
     if (!mounted) return;
@@ -85,6 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final detectedRole = _detectedRole;
 
     return Scaffold(
       appBar: AppBar(
@@ -113,41 +143,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Sign up using your institutional ALU email account.',
+                      'One unified portal. Your account type is automatically determined by your institutional email.',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 13,
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                       ),
                     ),
                     const SizedBox(height: 24),
-
-                    // Role Selector Tabs
-                    Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: isDark ? AppColors.darkSurface : AppColors.lightBorder,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: _buildRoleButton(
-                              label: 'Student',
-                              role: 'student',
-                              icon: CupertinoIcons.person_fill,
-                            ),
-                          ),
-                          Expanded(
-                            child: _buildRoleButton(
-                              label: 'Campus Staff',
-                              role: 'staff',
-                              icon: CupertinoIcons.person_crop_circle_badge_checkmark,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 20),
 
                     // Full Name
                     CustomTextField(
@@ -162,18 +164,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // ALU Email
                     CustomTextField(
                       controller: _emailController,
-                      label: 'ALU Email',
-                      hint: _selectedRole == 'student'
-                          ? 'e.g. a.hassan@alustudent.com'
-                          : 'e.g. facilities@alueducation.com',
+                      label: 'Institutional ALU Email',
+                      hint: 'e.g. a.hassan@alustudent.com',
                       prefixIcon: CupertinoIcons.mail,
                       keyboardType: TextInputType.emailAddress,
                       validator: Validators.validateEmail,
                     ),
+                    const SizedBox(height: 8),
+
+                    // Dynamic Role Auto-Detection Card
+                    _buildRoleDetectionBanner(isDark, detectedRole),
                     const SizedBox(height: 14),
 
-                    // Student ID (if Student)
-                    if (_selectedRole == 'student') ...[
+                    // Student ID (Displayed only when Student domain is detected)
+                    if (detectedRole == 'student') ...[
                       CustomTextField(
                         controller: _studentIdController,
                         label: 'Student ID (Optional)',
@@ -228,40 +232,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  Widget _buildRoleButton({
-    required String label,
-    required String role,
-    required IconData icon,
-  }) {
-    final isSelected = _selectedRole == role;
-    return GestureDetector(
-      onTap: () => setState(() => _selectedRole = role),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.symmetric(vertical: 10),
+  Widget _buildRoleDetectionBanner(bool isDark, String? role) {
+    if (role == 'staff') {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : Colors.transparent,
+          color: AppColors.statusInProgress.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.statusInProgress.withValues(alpha: 0.4)),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: const Row(
           children: [
-            Icon(
-              icon,
-              size: 16,
-              color: isSelected ? Colors.white : AppColors.lightTextSecondary,
-            ),
-            const SizedBox(width: 6),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                color: isSelected ? Colors.white : AppColors.lightTextSecondary,
+            Icon(CupertinoIcons.shield_fill, size: 18, color: AppColors.statusInProgress),
+            SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Campus Staff account detected (@alueducation.com). Triage and management privileges will be granted.',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.statusInProgress,
+                ),
               ),
             ),
           ],
         ),
+      );
+    } else if (role == 'student') {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: AppColors.primary.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.primary.withValues(alpha: 0.4)),
+        ),
+        child: const Row(
+          children: [
+            Icon(CupertinoIcons.person_badge_plus_fill, size: 18, color: AppColors.primary),
+            SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Student account detected (@alustudent.com). Incident reporting and tracking dashboard will be enabled.',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.primary,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.darkSurface : AppColors.lightBorder.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            CupertinoIcons.info_circle,
+            size: 16,
+            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'Enter @alueducation.com for Staff or @alustudent.com for Student.',
+              style: TextStyle(
+                fontSize: 11,
+                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

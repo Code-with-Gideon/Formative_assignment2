@@ -21,12 +21,14 @@ class AuthService {
     }
   }
 
-  // Register user with ALU domain verification
+  // Register user with automatic domain-based role detection
+  // @alueducation.com => automatically assigned 'staff'
+  // @alustudent.com => automatically assigned 'student'
   Future<UserModel> register({
     required String email,
     required String password,
     required String fullName,
-    required String role,
+    String? role,
     String? studentIdNumber,
   }) async {
     final domainCheck = Validators.validateEmail(email);
@@ -34,19 +36,24 @@ class AuthService {
       throw domainCheck;
     }
 
+    final normalizedEmail = email.trim().toLowerCase();
+    final String resolvedRole = normalizedEmail.endsWith('@alueducation.com')
+        ? 'staff'
+        : 'student';
+
     try {
       final credential = await _auth.createUserWithEmailAndPassword(
-        email: email.trim(),
+        email: normalizedEmail,
         password: password.trim(),
       );
 
       final uid = credential.user!.uid;
       final userModel = UserModel(
         uid: uid,
-        email: email.trim().toLowerCase(),
+        email: normalizedEmail,
         fullName: fullName.trim(),
-        role: role,
-        studentIdNumber: studentIdNumber?.trim(),
+        role: resolvedRole,
+        studentIdNumber: resolvedRole == 'student' ? studentIdNumber?.trim() : null,
         createdAt: DateTime.now(),
       );
 

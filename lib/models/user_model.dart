@@ -17,15 +17,16 @@ class UserModel {
     required this.createdAt,
   });
 
-  bool get isStaff => role == 'staff';
-  bool get isStudent => role == 'student';
+  // Automatically treat @alueducation.com accounts as staff
+  bool get isStaff => role == 'staff' || email.trim().toLowerCase().endsWith('@alueducation.com');
+  bool get isStudent => !isStaff;
 
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'email': email,
       'fullName': fullName,
-      'role': role,
+      'role': isStaff ? 'staff' : 'student',
       'studentIdNumber': studentIdNumber,
       'createdAt': Timestamp.fromDate(createdAt),
     };
@@ -33,22 +34,28 @@ class UserModel {
 
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>? ?? {};
+    final email = (data['email'] as String? ?? '').trim().toLowerCase();
+    final defaultRole = email.endsWith('@alueducation.com') ? 'staff' : 'student';
+
     return UserModel(
       uid: doc.id,
-      email: data['email'] ?? '',
+      email: email,
       fullName: data['fullName'] ?? '',
-      role: data['role'] ?? 'student',
+      role: data['role'] ?? defaultRole,
       studentIdNumber: data['studentIdNumber'],
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map, String id) {
+    final email = (map['email'] as String? ?? '').trim().toLowerCase();
+    final defaultRole = email.endsWith('@alueducation.com') ? 'staff' : 'student';
+
     return UserModel(
       uid: id,
-      email: map['email'] ?? '',
+      email: email,
       fullName: map['fullName'] ?? '',
-      role: map['role'] ?? 'student',
+      role: map['role'] ?? defaultRole,
       studentIdNumber: map['studentIdNumber'],
       createdAt: (map['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
     );
