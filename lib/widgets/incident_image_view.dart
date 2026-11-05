@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart' show showModalBottomSheet;
+import 'package:flutter/services.dart';
 import '../core/constants/app_colors.dart';
 import '../core/constants/app_constants.dart';
 
@@ -39,7 +41,7 @@ class IncidentImageView extends StatelessWidget {
   Widget _buildImageContent(BuildContext context) {
     final raw = imageUrl?.trim() ?? '';
     if (raw.isEmpty) {
-      return _buildPlaceholder();
+      return _buildPlaceholder(context);
     }
 
     // 1. Local file path check (for rapid local preview)
@@ -53,7 +55,11 @@ class IncidentImageView extends StatelessWidget {
             width: width,
             height: height,
             fit: fit,
-            errorBuilder: (_, _, _) => _buildPlaceholder(failureReason: 'Local photo inaccessible'),
+            errorBuilder: (_, _, _) => _buildPlaceholder(
+              context,
+              failureReason: 'Local photo inaccessible',
+              rawUrl: raw,
+            ),
           );
         }
       } catch (e) {
@@ -69,7 +75,6 @@ class IncidentImageView extends StatelessWidget {
       try {
         final commaIndex = raw.indexOf(',');
         final base64Portion = (commaIndex != -1) ? raw.substring(commaIndex + 1) : raw;
-        // Clean out all linebreaks, spaces, and carriage returns that invalidate Dart base64 decoding
         final cleanBase64 = base64Portion.replaceAll(RegExp(r'\s+'), '');
         final bytes = base64Decode(cleanBase64);
 
@@ -80,12 +85,20 @@ class IncidentImageView extends StatelessWidget {
           fit: fit,
           errorBuilder: (ctx, err, stack) {
             debugPrint('[IncidentImageView] Base64 memory decode failed: $err');
-            return _buildPlaceholder(failureReason: 'Failed to decode photo data');
+            return _buildPlaceholder(
+              context,
+              failureReason: 'Failed to decode photo data',
+              rawUrl: raw,
+            );
           },
         );
       } catch (e) {
         debugPrint('[IncidentImageView] Base64 parse exception: $e');
-        return _buildPlaceholder(failureReason: 'Corrupted photo format');
+        return _buildPlaceholder(
+          context,
+          failureReason: 'Corrupted photo format',
+          rawUrl: raw,
+        );
       }
     }
 
@@ -107,17 +120,36 @@ class IncidentImageView extends StatelessWidget {
         );
       },
       errorBuilder: (ctx, error, stackTrace) {
-        debugPrint('[IncidentImageView] Network image failed for URL: $raw ($error)');
-        return _buildPlaceholder(failureReason: 'Storage permission / connection error');
+        final errText = error.toString();
+        debugPrint('[IncidentImageView] Network image failed for URL: $raw ($errText)');
+
+        String diagnosticHint = 'Storage Rules need to allow public read';
+        if (errText.contains('Permission denied') || errText.contains('SocketException')) {
+          diagnosticHint = 'OS permission denied (rebuild app with flutter run)';
+        } else if (errText.contains('403')) {
+          diagnosticHint = 'HTTP 403: Storage Rules locked in Firebase Console';
+        }
+
+        return _buildPlaceholder(
+          context,
+          failureReason: diagnosticHint,
+          rawUrl: raw,
+          detailedError: errText,
+        );
       },
     );
   }
 
-  Widget _buildPlaceholder({String? failureReason}) {
+  Widget _buildPlaceholder(
+    BuildContext context, {
+    String? failureReason,
+    String? rawUrl,
+    String? detailedError,
+  }) {
     final hasAttachment = imageUrl != null && imageUrl!.trim().isNotEmpty;
     final isSmall = height != null && height! < 100;
 
-    return Container(
+    final container = Container(
       width: width,
       height: height,
       color: category.color.withValues(alpha: 0.12),
@@ -132,24 +164,133 @@ class IncidentImageView extends StatelessWidget {
             ),
             if (hasAttachment && !isSmall) ...[
               const SizedBox(height: 10),
-              Text(
-                failureReason ?? 'Loading photo...',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: category.color,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  failureReason ?? 'Loading photo...',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: category.color,
+                  ),
                 ),
               ),
               const SizedBox(height: 4),
-              const Text(
-                'Publish Storage Rules & restart app',
-                style: TextStyle(
-                  fontSize: 11,
-                  color: AppColors.lightTextSecondary,
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Tap to inspect diagnostics & copy URL',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: AppColors.lightTextSecondary,
+                  ),
                 ),
               ),
             ],
           ],
+        ),
+      ),
+    );
+
+    if (hasAttachment && !isSmall) {
+      return GestureDetector(
+        onTap: () => _showDiagnosticsModal(context, rawUrl, detailedError),
+        child: container,
+      );
+    }
+
+    return container;
+  }
+
+  void _showDiagnosticsModal(BuildContext context, String? url, String? error) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(CupertinoIcons.info_circle_fill, color: category.color, size: 22),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Photo Diagnostics',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 14),
+              const Text(
+                'Firebase Storage Download URL:',
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: AppColors.lightBorder.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: SelectableText(
+                  url ?? 'No URL provided',
+                  style: const TextStyle(fontSize: 11, fontFamily: 'monospace'),
+                ),
+              ),
+              if (error != null) ...[
+                const SizedBox(height: 12),
+                const Text(
+                  'Error Log:',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  error,
+                  style: const TextStyle(fontSize: 11, color: CupertinoColors.systemRed),
+                ),
+              ],
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Expanded(
+                    child: CupertinoButton(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(10),
+                      onPressed: () {
+                        if (url != null) {
+                          Clipboard.setData(ClipboardData(text: url));
+                          Navigator.pop(ctx);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Photo URL copied to clipboard! Paste in browser to test.'),
+                              behavior: SnackBarBehavior.floating,
+                            ),
+                          );
+                        }
+                      },
+                      child: const Text('Copy URL', style: TextStyle(fontSize: 14, color: CupertinoColors.white)),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  CupertinoButton(
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    color: AppColors.lightBorder,
+                    borderRadius: BorderRadius.circular(10),
+                    onPressed: () => Navigator.pop(ctx),
+                    child: const Text('Close', style: TextStyle(fontSize: 14, color: AppColors.lightTextPrimary)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
