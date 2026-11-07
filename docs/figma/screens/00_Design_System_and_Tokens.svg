@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 1000 940" width="1000" height="940">
+  <rect x="0" y="-48" width="1000" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="00_ALU_Design_System_Board" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">00. ALU Brand Identity &amp; Design System Tokens</text>
+    <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">920 × 852 px · Pixel-Sampled from Official ALU Wordmark</text>
+
+    <rect width="920" height="852" rx="28" fill="#FFFFFF" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Top Navy Banner -->
+    <rect x="0" y="0" width="920" height="128" rx="28" fill="#002E6D"/>
+    <rect x="0" y="100" width="920" height="28" fill="#002E6D"/>
+    <rect x="0" y="123" width="920" height="5" fill="#D00D2D"/>
+    
+  <g id="ALU_Official_Logo" transform="translate(32, 34) scale(1.1)">
+    <rect id="ALU_Navy_Backing" x="0" y="0" width="250" height="56" rx="8" fill="#002E6D"/>
+    <!-- Top Red Half of A L U -->
+    <g id="ALU_Mark_Red_Top" fill="#D00D2D">
+      <!-- A top slanted bar -->
+      <polygon points="18,10 29,10 35,27 24,27"/>
+      <!-- L top vertical bar -->
+      <rect x="44" y="10" width="11" height="17"/>
+      <!-- U top two vertical bars -->
+      <rect x="68" y="10" width="11" height="17"/>
+      <rect x="86" y="10" width="11" height="17"/>
+    </g>
+    <!-- Bottom White Half of A L U -->
+    <g id="ALU_Mark_White_Bottom" fill="#FFFFFF">
+      <!-- A bottom legs + crossbar -->
+      <polygon points="12,30 36,30 41,45 31,45 29,40 19,40 17,45 7,45"/>
+      <!-- L bottom base -->
+      <polygon points="44,30 55,30 55,37 64,37 64,45 44,45"/>
+      <!-- U bottom curve -->
+      <path d="M68,30 L79,30 L79,35 C79,37.5 80.2,38.5 82.5,38.5 C84.8,38.5 86,37.5 86,35 L86,30 L97,30 L97,35.5 C97,41.8 91.5,45.5 82.5,45.5 C73.5,45.5 68,41.8 68,35.5 Z"/>
+    </g>
+    <g id="ALU_Wordmark_Text" transform="translate(108, 0)">
+            <text x="0" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.4" fill="#D00D2D">AFRICAN</text>
+            <text x="0" y="33" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.2" fill="#FFFFFF">LEADERSHIP</text>
+            <text x="0" y="46" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.2" fill="#FFFFFF">UNIVERSITY</text>
+          </g>
+  </g>
+    <text x="884" y="58" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#FFFFFF">CampusCare Design System</text>
+    <text x="884" y="82" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#CBD5E1">Tokens · Typography · Reusable Flutter Widget Specs</text>
+
+    <!-- Section 1: Color Tokens -->
+    <text x="32" y="168" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#0B1A33">1. Exact Brand Colour Tokens (Pixel-Sampled)</text>
+    
+        <g id="Token_ALU_Navy__Primary_" transform="translate(32, 186)">
+          <rect width="202" height="96" rx="14" fill="#002E6D" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">ALU Navy (Primary)</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#002E6D</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">AppColors.aluNavy</text>
+        </g>
+        <g id="Token_ALU_Red__Accent_" transform="translate(250, 186)">
+          <rect width="202" height="96" rx="14" fill="#D00D2D" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">ALU Red (Accent)</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#D00D2D</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">AppColors.aluRed</text>
+        </g>
+        <g id="Token_ALU_Grey__Neutral_" transform="translate(468, 186)">
+          <rect width="202" height="96" rx="14" fill="#77818D" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">ALU Grey (Neutral)</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#77818D</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">AppColors.aluGrey</text>
+        </g>
+        <g id="Token_Primary_Light_Tint" transform="translate(686, 186)">
+          <rect width="202" height="96" rx="14" fill="#3D6DB5" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Primary Light Tint</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#3D6DB5</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">AppColors.primaryLight</text>
+        </g>
+        <g id="Token_Dark_Navy_Surface" transform="translate(32, 298)">
+          <rect width="202" height="96" rx="14" fill="#0A2550" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Dark Navy Surface</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#0A2550</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">AppColors.darkSurface</text>
+        </g>
+        <g id="Token_Status_Submitted" transform="translate(250, 298)">
+          <rect width="202" height="96" rx="14" fill="#D97706" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Status Submitted</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#D97706</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">Amber / Pending</text>
+        </g>
+        <g id="Token_Status_In_Progress" transform="translate(468, 298)">
+          <rect width="202" height="96" rx="14" fill="#2563EB" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Status In Progress</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#2563EB</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">Royal Blue / Active</text>
+        </g>
+        <g id="Token_Status_Resolved" transform="translate(686, 298)">
+          <rect width="202" height="96" rx="14" fill="#059669" stroke="#E1E6EE" stroke-width="1"/>
+          <text x="16" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#FFFFFF">Status Resolved</text>
+          <text x="16" y="58" font-family="monospace" font-size="14" font-weight="700" fill="#FFFFFF">#059669</text>
+          <text x="16" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#FFFFFF" opacity="0.85">Emerald / Fixed</text>
+        </g>
+
+    <!-- Section 2: Typography Scale -->
+    <text x="32" y="442" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#0B1A33">2. Typography Hierarchy &amp; Scale</text>
+    <rect x="32" y="458" width="420" height="360" rx="16" fill="#F4F6FA" stroke="#E1E6EE"/>
+    <text x="52" y="502" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#0B1A33">Display Hero · 30px w800</text>
+    <text x="52" y="544" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#0B1A33">Screen Title · 22px w800</text>
+    <text x="52" y="582" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" fill="#0B1A33">Section Header · 18px w700</text>
+    <text x="52" y="616" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#0B1A33">Card Title · 15px w700</text>
+    <text x="52" y="648" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#5C6672">Body Copy · 14px w500 (WCAG AA 4.5:1 Contrast Verified)</text>
+    <text x="52" y="678" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" fill="#77818D">Metadata &amp; Timestamps · 11.5px w600 (#77818D ALU Grey)</text>
+
+    <!-- AluSplitBar Motif Spec -->
+    <rect x="52" y="704" width="380" height="92" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+    <rect x="70" y="726" width="48" height="4" fill="#D00D2D"/>
+    <rect x="70" y="730" width="48" height="4" fill="#002E6D"/>
+    <text x="134" y="733" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#0B1A33">AluSplitBar Signature Motif</text>
+    <text x="70" y="758" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#5C6672">Mirrors the horizontal red-over-white cut of the ALU</text>
+    <text x="70" y="776" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#5C6672">letterforms across section headers and hero cards.</text>
+
+    <!-- Section 3: Reusable UI Components -->
+    <text x="476" y="442" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#0B1A33">3. Reusable Flutter Component Library</text>
+    <rect x="476" y="458" width="412" height="360" rx="16" fill="#F4F6FA" stroke="#E1E6EE"/>
+
+    <!-- Status Badges Row -->
+    <text x="496" y="488" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#5C6672">STATUS BADGES (StatusBadge Widget)</text>
+    <g transform="translate(496, 500)">
+      <rect x="0" y="0" width="96" height="28" rx="14" fill="#E8EFF8"/>
+      <circle cx="14" cy="14" r="4" fill="#1E5BB8"/>
+      <text x="54" y="18" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#1E5BB8">Submitted</text>
+
+      <rect x="108" y="0" width="104" height="28" rx="14" fill="#FEF3C7"/>
+      <circle cx="122" cy="14" r="4" fill="#D97706"/>
+      <text x="166" y="18" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#D97706">In Progress</text>
+
+      <rect x="224" y="0" width="92" height="28" rx="14" fill="#D1FAE5"/>
+      <circle cx="238" cy="14" r="4" fill="#059669"/>
+      <text x="275" y="18" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#059669">Resolved</text>
+    </g>
+
+    <!-- Category Chips -->
+    <text x="496" y="558" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#5C6672">CATEGORY SELECTOR CHIPS (CategoryChip Widget)</text>
+    <g transform="translate(496, 570)">
+      <rect x="0" y="0" width="84" height="34" rx="10" fill="#002E6D"/>
+      <text x="42" y="21" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Facilities</text>
+
+      <rect x="94" y="0" width="76" height="34" rx="10" fill="#FFFFFF" stroke="#E1E6EE"/>
+      <text x="132" y="21" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#0B1A33">Water</text>
+
+      <rect x="180" y="0" width="88" height="34" rx="10" fill="#FFFFFF" stroke="#E1E6EE"/>
+      <text x="224" y="21" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#0B1A33">Electricity</text>
+
+      <rect x="278" y="0" width="78" height="34" rx="10" fill="#FBE7EA" stroke="#D00D2D"/>
+      <text x="317" y="21" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#D00D2D">Safety</text>
+    </g>
+
+    <!-- Primary CTA & Google Button -->
+    <text x="496" y="636" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#5C6672">BUTTON SYSTEM (CustomButton &amp; GoogleSignInButton)</text>
+    <rect x="496" y="648" width="372" height="48" rx="14" fill="#002E6D"/>
+    <text x="682" y="677" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Sign In / Submit Report</text>
+
+    <rect x="496" y="708" width="372" height="48" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+    <circle cx="602" cy="732" r="9" fill="#4285F4"/>
+    <text x="602" y="736" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">G</text>
+    <text x="694" y="737" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#0B1A33">Continue with Google</text>
+  </g>
+  </g>
+</svg>

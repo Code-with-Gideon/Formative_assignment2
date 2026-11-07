@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 473 940" width="473" height="940">
+  <rect x="0" y="-48" width="473" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="05_Create_Incident_Screen" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">05. Report an Incident Form</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/student/create_incident_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="05_Create_Incident_Screen_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#F4F6FA" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="05_Create_Incident_Screen_Body">
+      
+      <!-- AppBar -->
+      <g id="Create_AppBar" transform="translate(20, 56)">
+        <text x="0" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" fill="#0B1A33">←   Report an Incident</text>
+      </g>
+
+      <!-- Category Grid -->
+      <g id="Category_Selector_Grid" transform="translate(20, 102)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Select a Category</text>
+        
+            <g id="Category_Tile_Facilities" transform="translate(0, 14)">
+              <rect width="112" height="64" rx="14" fill="#E8EFF8" stroke="#002E6D" stroke-width="2"/>
+              <circle cx="56" cy="24" r="10" fill="#002E6D" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#002E6D"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#002E6D">Facilities</text>
+            </g>
+            <g id="Category_Tile_Water" transform="translate(120, 14)">
+              <rect width="112" height="64" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+              <circle cx="56" cy="24" r="10" fill="#0284C7" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#0284C7"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0B1A33">Water</text>
+            </g>
+            <g id="Category_Tile_Electricity" transform="translate(240, 14)">
+              <rect width="112" height="64" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+              <circle cx="56" cy="24" r="10" fill="#D97706" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#D97706"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0B1A33">Electricity</text>
+            </g>
+            <g id="Category_Tile_Safety" transform="translate(0, 88)">
+              <rect width="112" height="64" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+              <circle cx="56" cy="24" r="10" fill="#D00D2D" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#D00D2D"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0B1A33">Safety</text>
+            </g>
+            <g id="Category_Tile_Sanitation" transform="translate(120, 88)">
+              <rect width="112" height="64" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+              <circle cx="56" cy="24" r="10" fill="#059669" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#059669"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0B1A33">Sanitation</text>
+            </g>
+            <g id="Category_Tile_Furniture" transform="translate(240, 88)">
+              <rect width="112" height="64" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+              <circle cx="56" cy="24" r="10" fill="#7C3AED" opacity="0.18"/>
+              <circle cx="56" cy="24" r="4.5" fill="#7C3AED"/>
+              <text x="56" y="50" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#0B1A33">Furniture</text>
+            </g>
+      </g>
+
+      <!-- Title Input -->
+      <g id="Create_Title_Input" transform="translate(20, 278)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Incident Title</text>
+        <rect x="0" y="10" width="353" height="48" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="16" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#0B1A33">Broken classroom projector in Room 204</text>
+      </g>
+
+      <!-- Location Dropdown -->
+      <g id="Create_Location_Dropdown" transform="translate(20, 356)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Campus Location</text>
+        <rect x="0" y="10" width="353" height="48" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <circle cx="22" cy="34" r="5" fill="#D00D2D"/>
+        <text x="38" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="600" fill="#0B1A33">Block B — Classrooms (Room 204)</text>
+        <text x="330" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#5C6672">▾</text>
+      </g>
+
+      <!-- Description Field -->
+      <g id="Create_Description_Input" transform="translate(20, 434)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Detailed Description</text>
+        <rect x="0" y="10" width="353" height="96" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="16" y="36" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#5C6672">The ceiling projector flickers and shuts off after</text>
+        <text x="16" y="56" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="500" fill="#5C6672">5 minutes. Affecting morning CS lectures.</text>
+      </g>
+
+      <!-- Photo Upload Box -->
+      <g id="Create_Photo_Picker" transform="translate(20, 560)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Attach Photograph (Optional)</text>
+        <rect x="0" y="10" width="353" height="128" rx="14" fill="#E8EFF8" stroke="#3D6DB5" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <circle cx="176.5" cy="56" r="18" fill="#002E6D"/>
+        <rect x="168.5" y="50" width="16" height="12" rx="2" fill="#FFFFFF"/>
+        <text x="176.5" y="96" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#002E6D">Tap to capture or upload photo</text>
+        <text x="176.5" y="114" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#5C6672">Synced to Firebase Cloud Storage</text>
+      </g>
+
+      <!-- Submit Button -->
+      <g id="Create_Submit_CTA" transform="translate(20, 730)">
+        <rect width="353" height="54" rx="14" fill="#002E6D"/>
+        <text x="176.5" y="33" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#FFFFFF">Submit Incident Report</text>
+      </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="05_Create_Incident_Screen_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0B1A33">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#0B1A33"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#0B1A33"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#0B1A33"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#0B1A33" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#0B1A33"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="05_Create_Incident_Screen_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  </g>
+</svg>

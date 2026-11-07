@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 473 940" width="473" height="940">
+  <rect x="0" y="-48" width="473" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="07_Staff_Triage_Dashboard" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">07. Staff Triage Board & Resolution Modal</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/staff/staff_dashboard_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="07_Staff_Triage_Dashboard_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#F4F6FA" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="07_Staff_Triage_Dashboard_Body">
+      
+      <!-- Staff AppBar with AluMark -->
+      <g id="Staff_AppBar" transform="translate(20, 52)">
+        
+  <g id="AluMark" transform="translate(0, 0) scale(0.6071428571428571)">
+    <rect width="56" height="56" rx="12" fill="#002E6D"/>
+    <g fill="#D00D2D">
+      <polygon points="9,14 16,14 20,27 13,27"/>
+      <rect x="24" y="14" width="7" height="13"/>
+      <rect x="36" y="14" width="6.5" height="13"/>
+      <rect x="45.5" y="14" width="6.5" height="13"/>
+    </g>
+    <g fill="#FFFFFF">
+      <polygon points="6,29 21,29 24,41 18,41 17,37 10,37 9,41 3,41"/>
+      <polygon points="24,29 31,29 31,35 35,35 35,41 24,41"/>
+      <path d="M36,29 L42.5,29 L42.5,33.5 C42.5,35.2 43.2,36 44.2,36 C45.2,36 45.8,35.2 45.8,33.5 L45.8,29 L52,29 L52,34 C52,38.8 48.8,41.5 44,41.5 C39.2,41.5 36,38.8 36,34 Z"/>
+    </g>
+  </g>
+        <text x="44" y="23" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="800" fill="#0B1A33">ALU Staff Triage</text>
+        <rect x="278" y="5" width="75" height="24" rx="12" fill="#FBE7EA"/>
+        <text x="315.5" y="21" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="800" fill="#D00D2D">STAFF RBAC</text>
+      </g>
+
+      <!-- Staff Overview Banner -->
+      <g id="Staff_Metrics_Row" transform="translate(20, 102)">
+        <rect width="353" height="74" rx="16" fill="#002E6D"/>
+        <text x="20" y="30" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">Campus Maintenance Queue</text>
+        <text x="20" y="50" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#CBD5E1">3 Pending · 5 In Progress · 14 Resolved</text>
+        <rect x="262" y="22" width="74" height="30" rx="8" fill="#D00D2D"/>
+        <text x="299" y="41" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">Active</text>
+      </g>
+
+      <!-- Filter Chips -->
+      <g id="Staff_Status_Filters" transform="translate(20, 192)">
+        <rect x="0" y="0" width="64" height="30" rx="15" fill="#002E6D"/>
+        <text x="32" y="19" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF">All (22)</text>
+
+        <rect x="72" y="0" width="94" height="30" rx="15" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="119" y="19" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" fill="#0B1A33">Submitted (3)</text>
+
+        <rect x="174" y="0" width="102" height="30" rx="15" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="225" y="19" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" fill="#0B1A33">In Progress (5)</text>
+      </g>
+
+      <!-- Background Incident Cards -->
+      <g id="Staff_Queue_List" transform="translate(20, 238)">
+        
+  <g id="IncidentCard_Water_shortage_in_Pod_B" transform="translate(0, 0)">
+    <rect width="353" height="96" rx="16" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#0284C7" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#0284C7"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#0B1A33">Water shortage in Pod B</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#5C6672">Student Residence · Block B</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#0284C7" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#0284C7">Water</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#E8EFF8"/>
+    <circle cx="264" cy="28" r="3.5" fill="#1E5BB8"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E5BB8">Submitted</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">Just now</text>
+  </g>
+      </g>
+
+      <!-- Dimmed Scrim Overlay -->
+      <rect id="Modal_Backdrop" x="0" y="0" width="393" height="852" rx="36" fill="#0B1A33" opacity="0.48"/>
+
+      <!-- Staff Update Incident Status Dialog Modal -->
+      <g id="Staff_Update_Status_Dialog" transform="translate(24, 240)">
+        <rect width="345" height="380" rx="22" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+        <rect x="0" y="0" width="345" height="6" rx="3" fill="#D00D2D"/>
+        
+        <text x="24" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="800" fill="#0B1A33">Update Incident Status</text>
+        <text x="24" y="62" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#002E6D">Water shortage in Pod B</text>
+
+        <!-- Status Dropdown -->
+        <text x="24" y="96" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#5C6672">Select New Status</text>
+        <rect x="24" y="106" width="297" height="46" rx="10" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+        <circle cx="44" cy="129" r="5" fill="#D97706"/>
+        <text x="58" y="134" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#D97706">In Progress</text>
+        <text x="300" y="134" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#D97706">▾</text>
+
+        <!-- Staff Resolution Note -->
+        <text x="24" y="180" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#5C6672">Staff Resolution Note</text>
+        <rect x="24" y="190" width="297" height="96" rx="10" fill="#F4F6FA" stroke="#E1E6EE"/>
+        <text x="38" y="216" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#0B1A33">Plumbing contractor assigned. Main valve</text>
+        <text x="38" y="236" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#0B1A33">replacement underway in Block B.</text>
+
+        <!-- Dialog Actions -->
+        <text x="168" y="338" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#5C6672">Cancel</text>
+        <rect x="224" y="312" width="97" height="42" rx="10" fill="#002E6D"/>
+        <text x="272.5" y="338" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#FFFFFF">Save Update</text>
+      </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="07_Staff_Triage_Dashboard_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0B1A33">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#0B1A33"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#0B1A33"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#0B1A33"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#0B1A33" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#0B1A33"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="07_Staff_Triage_Dashboard_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  </g>
+</svg>

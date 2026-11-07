@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 473 940" width="473" height="940">
+  <rect x="0" y="-48" width="473" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="02_Login_Screen" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">02. Login Screen (ALU Navy Hero)</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/auth/login_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="02_Login_Screen_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#F4F6FA" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="02_Login_Screen_Body">
+      
+      <!-- Top ALU Navy Hero Block -->
+      <g id="Login_Navy_Hero">
+        <path d="M0,36 Q0,0 36,0 L357,0 Q393,0 393,36 L393,310 L0,310 Z" fill="#002E6D"/>
+        <!-- Theme Toggle Button -->
+        <circle cx="353" cy="64" r="18" fill="#FFFFFF" opacity="0.12"/>
+        <circle cx="353" cy="64" r="7" fill="#FFFFFF"/>
+        <!-- Official ALU Horizontal Logo -->
+        
+  <g id="ALU_Official_Logo" transform="translate(24, 86) scale(1.05)">
+    <rect id="ALU_Navy_Backing" x="0" y="0" width="250" height="56" rx="8" fill="#002E6D"/>
+    <!-- Top Red Half of A L U -->
+    <g id="ALU_Mark_Red_Top" fill="#D00D2D">
+      <!-- A top slanted bar -->
+      <polygon points="18,10 29,10 35,27 24,27"/>
+      <!-- L top vertical bar -->
+      <rect x="44" y="10" width="11" height="17"/>
+      <!-- U top two vertical bars -->
+      <rect x="68" y="10" width="11" height="17"/>
+      <rect x="86" y="10" width="11" height="17"/>
+    </g>
+    <!-- Bottom White Half of A L U -->
+    <g id="ALU_Mark_White_Bottom" fill="#FFFFFF">
+      <!-- A bottom legs + crossbar -->
+      <polygon points="12,30 36,30 41,45 31,45 29,40 19,40 17,45 7,45"/>
+      <!-- L bottom base -->
+      <polygon points="44,30 55,30 55,37 64,37 64,45 44,45"/>
+      <!-- U bottom curve -->
+      <path d="M68,30 L79,30 L79,35 C79,37.5 80.2,38.5 82.5,38.5 C84.8,38.5 86,37.5 86,35 L86,30 L97,30 L97,35.5 C97,41.8 91.5,45.5 82.5,45.5 C73.5,45.5 68,41.8 68,35.5 Z"/>
+    </g>
+    <g id="ALU_Wordmark_Text" transform="translate(108, 0)">
+            <text x="0" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.4" fill="#D00D2D">AFRICAN</text>
+            <text x="0" y="33" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.2" fill="#FFFFFF">LEADERSHIP</text>
+            <text x="0" y="46" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.2" fill="#FFFFFF">UNIVERSITY</text>
+          </g>
+  </g>
+        <!-- AluSplitBar -->
+        <g id="AluSplitBar" transform="translate(24, 174)">
+          <rect x="0" y="0" width="44" height="3.5" fill="#D00D2D"/>
+          <rect x="0" y="3.5" width="44" height="3.5" fill="#FFFFFF"/>
+        </g>
+        <text x="24" y="220" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.8" fill="#FFFFFF">CampusCare</text>
+        <text x="24" y="246" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#CBD5E1">Spot it. Report it. Track it until it is fixed.</text>
+      </g>
+
+      <!-- Login Form Section -->
+      <g id="Login_Form_Container" transform="translate(24, 342)">
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#0B1A33">Sign in with your ALU account</text>
+
+        <!-- Email Input -->
+        <g id="Input_ALU_Email" transform="translate(0, 24)">
+          <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#0B1A33">ALU Email</text>
+          <rect x="0" y="10" width="345" height="50" rx="12" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+          <rect x="16" y="27" width="18" height="14" rx="2" fill="#3D6DB5"/>
+          <text x="46" y="40" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#0B1A33">e.olowoyo@alustudent.com</text>
+        </g>
+
+        <!-- Password Input -->
+        <g id="Input_Password" transform="translate(0, 108)">
+          <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#0B1A33">Password</text>
+          <rect x="0" y="10" width="345" height="50" rx="12" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+          <rect x="16" y="26" width="16" height="16" rx="3" fill="#3D6DB5"/>
+          <text x="46" y="40" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="700" fill="#0B1A33">••••••••••</text>
+        </g>
+
+        <!-- Sign In Button -->
+        <g id="Button_Sign_In" transform="translate(0, 196)">
+          <rect width="345" height="52" rx="14" fill="#002E6D"/>
+          <text x="172.5" y="31" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" font-weight="700" fill="#FFFFFF">Sign In</text>
+        </g>
+
+        <!-- OR Divider -->
+        <g id="Divider_OR" transform="translate(0, 272)">
+          <line x1="0" y1="0" x2="146" y2="0" stroke="#E1E6EE" stroke-width="1.5"/>
+          <text x="172.5" y="4" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#5C6672">OR</text>
+          <line x1="199" y1="0" x2="345" y2="0" stroke="#E1E6EE" stroke-width="1.5"/>
+        </g>
+
+        <!-- Continue with Google Button -->
+        <g id="Button_Continue_With_Google" transform="translate(0, 294)">
+          <rect width="345" height="52" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+          <circle cx="88" cy="26" r="10" fill="#4285F4"/>
+          <text x="88" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">G</text>
+          <text x="184" y="31" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#0B1A33">Continue with Google</text>
+        </g>
+
+        <!-- Create Account Link -->
+        <text x="172.5" y="382" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#5C6672">
+          New student or staff? <tspan font-weight="700" fill="#3D6DB5">Create Account</tspan>
+        </text>
+      </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="02_Login_Screen_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0B1A33">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#0B1A33"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#0B1A33"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#0B1A33"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#0B1A33" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#0B1A33"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="02_Login_Screen_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  </g>
+</svg>

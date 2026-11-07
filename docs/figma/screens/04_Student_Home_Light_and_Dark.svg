@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 920 940" width="920" height="940">
+  <rect x="0" y="-48" width="920" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="04A_Student_Home_Light" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">04A. Student Home (Light Mode)</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/student/student_home_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="04A_Student_Home_Light_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#F4F6FA" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="04A_Student_Home_Light_Body">
+      
+      <!-- Top Greeting & ALU Mark -->
+      <g id="Home_Top_Header" transform="translate(20, 56)">
+        
+  <g id="AluMark" transform="translate(0, 0) scale(0.75)">
+    <rect width="56" height="56" rx="12" fill="#002E6D"/>
+    <g fill="#D00D2D">
+      <polygon points="9,14 16,14 20,27 13,27"/>
+      <rect x="24" y="14" width="7" height="13"/>
+      <rect x="36" y="14" width="6.5" height="13"/>
+      <rect x="45.5" y="14" width="6.5" height="13"/>
+    </g>
+    <g fill="#FFFFFF">
+      <polygon points="6,29 21,29 24,41 18,41 17,37 10,37 9,41 3,41"/>
+      <polygon points="24,29 31,29 31,35 35,35 35,41 24,41"/>
+      <path d="M36,29 L42.5,29 L42.5,33.5 C42.5,35.2 43.2,36 44.2,36 C45.2,36 45.8,35.2 45.8,33.5 L45.8,29 L52,29 L52,34 C52,38.8 48.8,41.5 44,41.5 C39.2,41.5 36,38.8 36,34 Z"/>
+    </g>
+  </g>
+        <text x="54" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#0B1A33">Hello, Olowoyo 👋</text>
+        <text x="54" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#5C6672">ALU Kigali Campus Operations</text>
+        <circle cx="332" cy="21" r="20" fill="#002E6D" stroke="#E1E6EE"/>
+        <text x="332" y="26" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#FFFFFF">O</text>
+      </g>
+
+      <!-- ALU Navy + Red Hero Action Card -->
+      <g id="Home_ALU_Hero_Banner" transform="translate(20, 118)">
+        <rect width="353" height="168" rx="20" fill="#002E6D" stroke="#E1E6EE"/>
+        <!-- Top 5px ALU Red Stripe -->
+        <rect x="0" y="0" width="353" height="6" rx="3" fill="#D00D2D"/>
+        <!-- LIVE Badge -->
+        <rect x="288" y="20" width="46" height="22" rx="7" fill="#D00D2D"/>
+        <text x="311" y="35" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" letter-spacing="0.8" fill="#FFFFFF">LIVE</text>
+        
+        <text x="20" y="42" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">See an issue</text>
+        <text x="20" y="66" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">on campus?</text>
+        <text x="20" y="90" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#DBEAFE">Report broken facilities, water or power faults and</text>
+        <text x="20" y="106" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#DBEAFE">track resolution directly with campus staff.</text>
+
+        <!-- Report an Issue Button -->
+        <rect x="20" y="120" width="154" height="36" rx="11" fill="#FFFFFF"/>
+        <circle cx="38" cy="138" r="8" fill="#D00D2D"/>
+        <text x="38" y="142" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">+</text>
+        <text x="104" y="143" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#002E6D">Report an Issue</text>
+      </g>
+
+      <!-- Report Summary Section -->
+      <g id="Home_Stats_Summary" transform="translate(20, 310)">
+        <text x="0" y="16" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#0B1A33">Report Summary</text>
+        <text x="353" y="16" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#3D6DB5">See all</text>
+
+        
+            <g id="Stat_Card_Total_Reports" transform="translate(0, 30)">
+              <rect width="82" height="86" rx="14" fill="#FFFFFF" stroke="#E1E6EE"/>
+              <circle cx="41" cy="24" r="12" fill="#D00D2D" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#D00D2D"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#0B1A33">12</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#5C6672">Total Reports</text>
+            </g>
+            <g id="Stat_Card_In_Progress" transform="translate(90, 30)">
+              <rect width="82" height="86" rx="14" fill="#FFFFFF" stroke="#E1E6EE"/>
+              <circle cx="41" cy="24" r="12" fill="#D97706" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#D97706"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#0B1A33">5</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#5C6672">In Progress</text>
+            </g>
+            <g id="Stat_Card_Resolved" transform="translate(180, 30)">
+              <rect width="82" height="86" rx="14" fill="#FFFFFF" stroke="#E1E6EE"/>
+              <circle cx="41" cy="24" r="12" fill="#059669" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#059669"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#0B1A33">4</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#5C6672">Resolved</text>
+            </g>
+            <g id="Stat_Card_Submitted" transform="translate(270, 30)">
+              <rect width="82" height="86" rx="14" fill="#FFFFFF" stroke="#E1E6EE"/>
+              <circle cx="41" cy="24" r="12" fill="#1E5BB8" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#1E5BB8"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#0B1A33">3</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#5C6672">Submitted</text>
+            </g>
+      </g>
+
+      <!-- Recent Reports List -->
+      <g id="Home_Recent_Reports" transform="translate(20, 452)">
+        <text x="0" y="16" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#0B1A33">Recent Reports</text>
+        <text x="353" y="16" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#3D6DB5">See all</text>
+
+        
+  <g id="IncidentCard_Water_shortage_in_Pod_B" transform="translate(0, 30)">
+    <rect width="353" height="96" rx="16" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#0284C7" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#0284C7"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#0B1A33">Water shortage in Pod B</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#5C6672">Student Residence · Block B</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#0284C7" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#0284C7">Water</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#FEF3C7"/>
+    <circle cx="264" cy="28" r="3.5" fill="#D97706"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#D97706">In Progress</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">12m ago</text>
+  </g>
+
+        
+  <g id="IncidentCard_Projector_HDMI_fault" transform="translate(0, 138)">
+    <rect width="353" height="96" rx="16" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#3D6DB5" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#3D6DB5"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#0B1A33">Projector HDMI fault</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#5C6672">Leadership Center · Room 204</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#3D6DB5" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#3D6DB5">Facilities</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#E8EFF8"/>
+    <circle cx="264" cy="28" r="3.5" fill="#1E5BB8"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E5BB8">Submitted</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">2h ago</text>
+  </g>
+
+        
+  <g id="IncidentCard_Corridor_emergency_light" transform="translate(0, 246)">
+    <rect width="353" height="96" rx="16" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#D00D2D" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#D00D2D"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#0B1A33">Corridor emergency light</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#5C6672">Block A · 2nd Floor</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#D00D2D" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#D00D2D">Safety</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#D1FAE5"/>
+    <circle cx="264" cy="28" r="3.5" fill="#059669"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#059669">Resolved</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">1d ago</text>
+  </g>
+      </g>
+
+      
+  <g id="Bottom_Navigation_Dock" transform="translate(0, 764)">
+    <rect x="0" y="16" width="393" height="72" rx="20" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1"/>
+    
+        <g id="Nav_Item_Home" transform="translate(42, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#002E6D" opacity="1"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#002E6D">Home</text>
+        </g>
+        <g id="Nav_Item_Reports" transform="translate(118, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#5C6672" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">Reports</text>
+        </g>
+        <g id="Nav_Item_Campus_Feed" transform="translate(275, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#5C6672" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">Campus Feed</text>
+        </g>
+        <g id="Nav_Item_Profile" transform="translate(350, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#5C6672" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#5C6672">Profile</text>
+        </g>
+    <!-- Center ALU Red Floating Action Button -->
+    <g id="FAB_Report_Issue" transform="translate(196.5, 14)">
+      <circle cx="0" cy="0" r="28" fill="#D00D2D" stroke="#FFFFFF" stroke-width="4"/>
+      <line x1="-9" y1="0" x2="9" y2="0" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+      <line x1="0" y1="-9" x2="0" y2="9" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+    </g>
+  </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="04A_Student_Home_Light_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0B1A33">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#0B1A33"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#0B1A33"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#0B1A33"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#0B1A33" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#0B1A33"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="04A_Student_Home_Light_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  <g id="04B_Student_Home_Dark" transform="translate(447, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">04B. Student Home (Dark Mode)</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/student/student_home_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="04B_Student_Home_Dark_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#00132F" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="04B_Student_Home_Dark_Body">
+      
+      <!-- Top Greeting & ALU Mark -->
+      <g id="Home_Top_Header" transform="translate(20, 56)">
+        
+  <g id="AluMark" transform="translate(0, 0) scale(0.75)">
+    <rect width="56" height="56" rx="12" fill="#002E6D"/>
+    <g fill="#D00D2D">
+      <polygon points="9,14 16,14 20,27 13,27"/>
+      <rect x="24" y="14" width="7" height="13"/>
+      <rect x="36" y="14" width="6.5" height="13"/>
+      <rect x="45.5" y="14" width="6.5" height="13"/>
+    </g>
+    <g fill="#FFFFFF">
+      <polygon points="6,29 21,29 24,41 18,41 17,37 10,37 9,41 3,41"/>
+      <polygon points="24,29 31,29 31,35 35,35 35,41 24,41"/>
+      <path d="M36,29 L42.5,29 L42.5,33.5 C42.5,35.2 43.2,36 44.2,36 C45.2,36 45.8,35.2 45.8,33.5 L45.8,29 L52,29 L52,34 C52,38.8 48.8,41.5 44,41.5 C39.2,41.5 36,38.8 36,34 Z"/>
+    </g>
+  </g>
+        <text x="54" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#F2F5FA">Hello, Olowoyo 👋</text>
+        <text x="54" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600" fill="#A3AEBD">ALU Kigali Campus Operations</text>
+        <circle cx="332" cy="21" r="20" fill="#002E6D" stroke="#1C3A6B"/>
+        <text x="332" y="26" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#FFFFFF">O</text>
+      </g>
+
+      <!-- ALU Navy + Red Hero Action Card -->
+      <g id="Home_ALU_Hero_Banner" transform="translate(20, 118)">
+        <rect width="353" height="168" rx="20" fill="#002E6D" stroke="#1C3A6B"/>
+        <!-- Top 5px ALU Red Stripe -->
+        <rect x="0" y="0" width="353" height="6" rx="3" fill="#D00D2D"/>
+        <!-- LIVE Badge -->
+        <rect x="288" y="20" width="46" height="22" rx="7" fill="#D00D2D"/>
+        <text x="311" y="35" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="800" letter-spacing="0.8" fill="#FFFFFF">LIVE</text>
+        
+        <text x="20" y="42" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">See an issue</text>
+        <text x="20" y="66" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#FFFFFF">on campus?</text>
+        <text x="20" y="90" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#DBEAFE">Report broken facilities, water or power faults and</text>
+        <text x="20" y="106" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#DBEAFE">track resolution directly with campus staff.</text>
+
+        <!-- Report an Issue Button -->
+        <rect x="20" y="120" width="154" height="36" rx="11" fill="#FFFFFF"/>
+        <circle cx="38" cy="138" r="8" fill="#D00D2D"/>
+        <text x="38" y="142" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="800" fill="#FFFFFF">+</text>
+        <text x="104" y="143" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#002E6D">Report an Issue</text>
+      </g>
+
+      <!-- Report Summary Section -->
+      <g id="Home_Stats_Summary" transform="translate(20, 310)">
+        <text x="0" y="16" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#F2F5FA">Report Summary</text>
+        <text x="353" y="16" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#3D6DB5">See all</text>
+
+        
+            <g id="Stat_Card_Total_Reports" transform="translate(0, 30)">
+              <rect width="82" height="86" rx="14" fill="#0A2550" stroke="#1C3A6B"/>
+              <circle cx="41" cy="24" r="12" fill="#D00D2D" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#D00D2D"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#F2F5FA">12</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#A3AEBD">Total Reports</text>
+            </g>
+            <g id="Stat_Card_In_Progress" transform="translate(90, 30)">
+              <rect width="82" height="86" rx="14" fill="#0A2550" stroke="#1C3A6B"/>
+              <circle cx="41" cy="24" r="12" fill="#D97706" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#D97706"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#F2F5FA">5</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#A3AEBD">In Progress</text>
+            </g>
+            <g id="Stat_Card_Resolved" transform="translate(180, 30)">
+              <rect width="82" height="86" rx="14" fill="#0A2550" stroke="#1C3A6B"/>
+              <circle cx="41" cy="24" r="12" fill="#059669" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#059669"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#F2F5FA">4</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#A3AEBD">Resolved</text>
+            </g>
+            <g id="Stat_Card_Submitted" transform="translate(270, 30)">
+              <rect width="82" height="86" rx="14" fill="#0A2550" stroke="#1C3A6B"/>
+              <circle cx="41" cy="24" r="12" fill="#1E5BB8" opacity="0.15"/>
+              <circle cx="41" cy="24" r="5" fill="#1E5BB8"/>
+              <text x="41" y="56" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800" fill="#F2F5FA">3</text>
+              <text x="41" y="73" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" font-weight="600" fill="#A3AEBD">Submitted</text>
+            </g>
+      </g>
+
+      <!-- Recent Reports List -->
+      <g id="Home_Recent_Reports" transform="translate(20, 452)">
+        <text x="0" y="16" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="700" fill="#F2F5FA">Recent Reports</text>
+        <text x="353" y="16" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#3D6DB5">See all</text>
+
+        
+  <g id="IncidentCard_Water_shortage_in_Pod_B" transform="translate(0, 30)">
+    <rect width="353" height="96" rx="16" fill="#0A2550" stroke="#1C3A6B" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#0284C7" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#0284C7"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#F2F5FA">Water shortage in Pod B</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#A3AEBD">Student Residence · Block B</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#0284C7" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#0284C7">Water</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#FEF3C7"/>
+    <circle cx="264" cy="28" r="3.5" fill="#D97706"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#D97706">In Progress</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">12m ago</text>
+  </g>
+
+        
+  <g id="IncidentCard_Projector_HDMI_fault" transform="translate(0, 138)">
+    <rect width="353" height="96" rx="16" fill="#0A2550" stroke="#1C3A6B" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#3D6DB5" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#3D6DB5"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#F2F5FA">Projector HDMI fault</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#A3AEBD">Leadership Center · Room 204</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#3D6DB5" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#3D6DB5">Facilities</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#E8EFF8"/>
+    <circle cx="264" cy="28" r="3.5" fill="#1E5BB8"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#1E5BB8">Submitted</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">2h ago</text>
+  </g>
+
+        
+  <g id="IncidentCard_Corridor_emergency_light" transform="translate(0, 246)">
+    <rect width="353" height="96" rx="16" fill="#0A2550" stroke="#1C3A6B" stroke-width="1"/>
+    <!-- Left Category Thumbnail -->
+    <rect x="14" y="16" width="64" height="64" rx="14" fill="#D00D2D" opacity="0.14"/>
+    <rect x="34" y="34" width="24" height="28" rx="4" fill="#D00D2D"/>
+    <!-- Title & Location -->
+    <text x="90" y="34" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#F2F5FA">Corridor emergency light</text>
+    <circle cx="95" cy="51" r="4" fill="#3D6DB5"/>
+    <text x="104" y="55" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#A3AEBD">Block A · 2nd Floor</text>
+    <!-- Category Pill -->
+    <rect x="90" y="64" width="74" height="20" rx="6" fill="#D00D2D" opacity="0.14"/>
+    <text x="127" y="78" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#D00D2D">Safety</text>
+    <!-- Status Badge -->
+    <rect x="252" y="16" width="87" height="24" rx="12" fill="#D1FAE5"/>
+    <circle cx="264" cy="28" r="3.5" fill="#059669"/>
+    <text x="299" y="32" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#059669">Resolved</text>
+    <!-- Timestamp -->
+    <text x="339" y="78" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">1d ago</text>
+  </g>
+      </g>
+
+      
+  <g id="Bottom_Navigation_Dock" transform="translate(0, 764)">
+    <rect x="0" y="16" width="393" height="72" rx="20" fill="#0A2550" stroke="#1C3A6B" stroke-width="1"/>
+    
+        <g id="Nav_Item_Home" transform="translate(42, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#D00D2D" opacity="1"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#D00D2D">Home</text>
+        </g>
+        <g id="Nav_Item_Reports" transform="translate(118, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#A3AEBD" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">Reports</text>
+        </g>
+        <g id="Nav_Item_Campus_Feed" transform="translate(275, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#A3AEBD" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">Campus Feed</text>
+        </g>
+        <g id="Nav_Item_Profile" transform="translate(350, 30)">
+          <rect x="-10" y="0" width="20" height="16" rx="4" fill="#A3AEBD" opacity="0.55"/>
+          <text x="0" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="500" fill="#A3AEBD">Profile</text>
+        </g>
+    <!-- Center ALU Red Floating Action Button -->
+    <g id="FAB_Report_Issue" transform="translate(196.5, 14)">
+      <circle cx="0" cy="0" r="28" fill="#D00D2D" stroke="#0A2550" stroke-width="4"/>
+      <line x1="-9" y1="0" x2="9" y2="0" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+      <line x1="0" y1="-9" x2="0" y2="9" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+    </g>
+  </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="04B_Student_Home_Dark_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#FFFFFF"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#FFFFFF"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#FFFFFF"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#FFFFFF"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="04B_Student_Home_Dark_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#475569"/>
+  </g>
+  </g>
+</svg>

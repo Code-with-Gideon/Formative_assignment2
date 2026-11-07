@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -48 473 940" width="473" height="940">
+  <rect x="0" y="-48" width="473" height="940" fill="#0F172A"/>
+  <g transform="translate(40, 12)">
+    
+  <g id="03_Register_Screen" transform="translate(0, 0)">
+    <text x="0" y="-26" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#F8FAFC">03. Register Screen (Auto-Role Detection)</text>
+           <text x="0" y="-9" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="500" fill="#94A3B8">393 × 852 px · lib/screens/auth/register_screen.dart</text>
+    <!-- Outer Device Bezel Shadow & Clip -->
+    <rect id="03_Register_Screen_Frame_Background" x="0" y="0" width="393" height="852" rx="36" fill="#F4F6FA" stroke="#334155" stroke-width="2"/>
+    
+    <!-- Screen Content Group -->
+    <g id="03_Register_Screen_Body">
+      
+      <!-- App Bar -->
+      <g id="Register_AppBar" transform="translate(24, 56)">
+        <text x="0" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="700" fill="#0B1A33">←   Create Account</text>
+      </g>
+
+      <!-- Header with AluMark & SplitBar -->
+      <g id="Register_Header" transform="translate(24, 102)">
+        
+  <g id="AluMark" transform="translate(0, 0) scale(0.75)">
+    <rect width="56" height="56" rx="12" fill="#002E6D"/>
+    <g fill="#D00D2D">
+      <polygon points="9,14 16,14 20,27 13,27"/>
+      <rect x="24" y="14" width="7" height="13"/>
+      <rect x="36" y="14" width="6.5" height="13"/>
+      <rect x="45.5" y="14" width="6.5" height="13"/>
+    </g>
+    <g fill="#FFFFFF">
+      <polygon points="6,29 21,29 24,41 18,41 17,37 10,37 9,41 3,41"/>
+      <polygon points="24,29 31,29 31,35 35,35 35,41 24,41"/>
+      <path d="M36,29 L42.5,29 L42.5,33.5 C42.5,35.2 43.2,36 44.2,36 C45.2,36 45.8,35.2 45.8,33.5 L45.8,29 L52,29 L52,34 C52,38.8 48.8,41.5 44,41.5 C39.2,41.5 36,38.8 36,34 Z"/>
+    </g>
+  </g>
+        <text x="54" y="20" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="21" font-weight="800" fill="#0B1A33">Join ALU CampusCare</text>
+        <rect x="54" y="28" width="34" height="3" fill="#D00D2D"/>
+        <rect x="54" y="31" width="34" height="3" fill="#002E6D"/>
+        <text x="0" y="62" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#5C6672">One unified portal. Your account role is automatically</text>
+        <text x="0" y="79" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="500" fill="#5C6672">assigned from your institutional ALU email domain.</text>
+      </g>
+
+      <!-- Form Fields -->
+      <g id="Register_Fields" transform="translate(24, 204)">
+        <!-- Full Name -->
+        <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#0B1A33">Full Name</text>
+        <rect x="0" y="8" width="345" height="46" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="16" y="36" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#0B1A33">Olowoyo Erioluwa Gideon</text>
+
+        <!-- Institutional Email -->
+        <text x="0" y="74" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#0B1A33">Institutional ALU Email</text>
+        <rect x="0" y="82" width="345" height="46" rx="12" fill="#FFFFFF" stroke="#002E6D" stroke-width="1.5"/>
+        <text x="16" y="110" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="600" fill="#0B1A33">e.olowoyo@alustudent.com</text>
+
+        <!-- Dynamic Role Auto-Detection Card -->
+        <g id="Role_Detection_Banner" transform="translate(0, 138)">
+          <rect width="345" height="52" rx="10" fill="#E8EFF8" stroke="#002E6D" stroke-width="1"/>
+          <circle cx="22" cy="26" r="10" fill="#002E6D"/>
+          <text x="22" y="30" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">✓</text>
+          <text x="42" y="22" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#002E6D">Student account detected (@alustudent.com)</text>
+          <text x="42" y="38" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#5C6672">Incident reporting &amp; live tracking dashboard enabled.</text>
+        </g>
+
+        <!-- Student ID -->
+        <text x="0" y="212" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#0B1A33">Student ID (Optional)</text>
+        <rect x="0" y="220" width="345" height="46" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="16" y="248" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="500" fill="#0B1A33">ALU-2024-0891</text>
+
+        <!-- Password -->
+        <text x="0" y="286" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="600" fill="#0B1A33">Password</text>
+        <rect x="0" y="294" width="345" height="46" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
+        <text x="16" y="322" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#0B1A33">••••••••••</text>
+
+        <!-- Submit CTA -->
+        <rect x="0" y="362" width="345" height="50" rx="14" fill="#002E6D"/>
+        <text x="172.5" y="392" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF">Create Account</text>
+
+        <!-- OR + Google -->
+        <text x="172.5" y="434" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#5C6672">OR</text>
+        <rect x="0" y="448" width="345" height="48" rx="14" fill="#FFFFFF" stroke="#E1E6EE" stroke-width="1.5"/>
+        <circle cx="92" cy="472" r="9" fill="#4285F4"/>
+        <text x="92" y="476" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="800" fill="#FFFFFF">G</text>
+        <text x="184" y="477" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#0B1A33">Sign up with Google</text>
+      </g>
+    
+    </g>
+
+    <!-- iOS Status Bar -->
+    <g id="03_Register_Screen_StatusBar" transform="translate(0, 0)">
+      <text x="32" y="27" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0B1A33">9:41</text>
+      <!-- Dynamic Island -->
+      <rect x="148" y="11" width="97" height="24" rx="12" fill="#050811"/>
+      <!-- Signal / Wifi / Battery -->
+      <rect x="315" y="18" width="3" height="8" rx="1" fill="#0B1A33"/>
+      <rect x="320" y="16" width="3" height="10" rx="1" fill="#0B1A33"/>
+      <rect x="325" y="14" width="3" height="12" rx="1" fill="#0B1A33"/>
+      <rect x="336" y="16" width="22" height="11" rx="3" fill="none" stroke="#0B1A33" stroke-width="1.5"/>
+      <rect x="338" y="18" width="16" height="7" rx="1.5" fill="#0B1A33"/>
+    </g>
+
+    <!-- Home Indicator Bar -->
+    <rect id="03_Register_Screen_HomeIndicator" x="129" y="836" width="135" height="5" rx="2.5" fill="#CBD5E1"/>
+  </g>
+  </g>
+</svg>
