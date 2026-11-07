@@ -138,6 +138,30 @@ class IncidentProvider extends ChangeNotifier {
     }
   }
 
+  // Delete an incident report, cleaning up both Cloud Storage photo and Firestore timeline
+  Future<bool> deleteIncident({
+    required String incidentId,
+    String? imageUrl,
+  }) async {
+    _isSubmitting = true;
+    notifyListeners();
+
+    try {
+      if (imageUrl != null && imageUrl.isNotEmpty) {
+        await _storageService.deletePhoto(imageUrl);
+      }
+      await _firestoreService.deleteIncident(incidentId);
+      _isSubmitting = false;
+      notifyListeners();
+      return true;
+    } catch (e) {
+      _errorMessage = e.toString();
+      _isSubmitting = false;
+      notifyListeners();
+      return false;
+    }
+  }
+
   // Filter a list in memory by active category, status, and search query
   List<IncidentModel> filterList(List<IncidentModel> items) {
     return items.where((incident) {

@@ -79,4 +79,17 @@ class StorageService {
       }
     }
   }
+
+  // Delete an uploaded incident photo from Firebase Storage to avoid orphaned cloud assets
+  Future<void> deletePhoto(String? imageUrl) async {
+    if (imageUrl == null || imageUrl.isEmpty) return;
+    if (imageUrl.startsWith('data:')) return; // Data URIs are stored in Firestore document fields, not in Storage buckets
+    try {
+      final ref = _storage.refFromURL(imageUrl);
+      await ref.delete();
+      debugPrint('[StorageService] Cleaned up Storage photo: $imageUrl');
+    } catch (e) {
+      debugPrint('[StorageService] Notice deleting photo: $e');
+    }
+  }
 }

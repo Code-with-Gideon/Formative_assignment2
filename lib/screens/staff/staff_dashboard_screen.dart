@@ -24,98 +24,31 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
   final String _selectedCategory = 'all';
 
   void _showStatusUpdateDialog(BuildContext context, IncidentModel incident) {
-    final authProvider = context.read<AuthProvider>();
-    final incidentProvider = context.read<IncidentProvider>();
-    final staffUser = authProvider.currentUser;
-
-    IncidentStatus newStatus = incident.status;
-    final notesController = TextEditingController(text: incident.staffNotes ?? '');
-
     showDialog(
       context: context,
-      builder: (dialogCtx) => StatefulBuilder(
-        builder: (ctx, setDialogState) => AlertDialog(
-          title: const Text('Update Incident Status'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  incident.title,
-                  style: const TextStyle(fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Select Status',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 6),
-                DropdownButtonFormField<IncidentStatus>(
-                  initialValue: newStatus,
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  ),
-                  items: IncidentStatus.values.map((s) {
-                    return DropdownMenuItem(
-                      value: s,
-                      child: Text(s.displayName),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    if (val != null) setDialogState(() => newStatus = val);
-                  },
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Staff Resolution Note',
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 6),
-                TextField(
-                  controller: notesController,
-                  maxLines: 3,
-                  decoration: InputDecoration(
-                    hintText: 'e.g. Plumbing contractor assigned. Work underway.',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialogCtx),
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                Navigator.pop(dialogCtx);
-                final success = await incidentProvider.updateStatus(
-                  incidentId: incident.id,
-                  newStatus: newStatus,
-                  staffName: staffUser?.fullName ?? 'Campus Staff',
-                  staffNotes: notesController.text.trim(),
-                );
+      builder: (dialogCtx) => _StatusUpdateDialog(
+        incident: incident,
+        onSave: (newStatus, notes) async {
+          final authProvider = context.read<AuthProvider>();
+          final incidentProvider = context.read<IncidentProvider>();
+          final staffUser = authProvider.currentUser;
 
-                if (context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(success ? 'Incident status updated!' : 'Failed to update status.'),
-                      backgroundColor: success ? AppColors.statusResolved : Colors.redAccent,
-                    ),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
+          final success = await incidentProvider.updateStatus(
+            incidentId: incident.id,
+            newStatus: newStatus,
+            staffName: staffUser?.fullName ?? 'Campus Staff',
+            staffNotes: notes,
+          );
+
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(success ? 'Incident status updated!' : 'Failed to update status.'),
+                backgroundColor: success ? AppColors.statusResolved : Colors.redAccent,
               ),
-              child: const Text('Save Update'),
-            ),
-          ],
-        ),
+            );
+          }
+        },
       ),
     );
   }
@@ -353,6 +286,112 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
         color: isSelected ? Colors.white : AppColors.lightTextSecondary,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    );
+  }
+}
+
+// Dedicated stateful dialog ensuring TextEditingController is properly disposed
+class _StatusUpdateDialog extends StatefulWidget {
+  final IncidentModel incident;
+  final Future<void> Function(IncidentStatus newStatus, String notes) onSave;
+
+  const _StatusUpdateDialog({
+    required this.incident,
+    required this.onSave,
+  });
+
+  @override
+  State<_StatusUpdateDialog> createState() => _StatusUpdateDialogState();
+}
+
+class _StatusUpdateDialogState extends State<_StatusUpdateDialog> {
+  late IncidentStatus _newStatus;
+  late final TextEditingController _notesController;
+
+  @override
+  void initState() {
+    super.initState();
+    _newStatus = widget.incident.status;
+    _notesController = TextEditingController(text: widget.incident.staffNotes ?? '');
+  }
+
+  @override
+  void dispose() {
+    _notesController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Update Incident Status'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.incident.title,
+              style: const TextStyle(fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Select Status',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 6),
+            DropdownButtonFormField<IncidentStatus>(
+              initialValue: _newStatus,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+              items: IncidentStatus.values.map((s) {
+                return DropdownMenuItem(
+                  value: s,
+                  child: Text(s.displayName),
+                );
+              }).toList(),
+              onChanged: (val) {
+                if (val != null) setState(() => _newStatus = val);
+              },
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              'Staff Resolution Note',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 6),
+            TextField(
+              controller: _notesController,
+              maxLines: 3,
+              decoration: InputDecoration(
+                hintText: 'e.g. Plumbing contractor assigned. Work underway.',
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            final notes = _notesController.text.trim();
+            final status = _newStatus;
+            Navigator.pop(context);
+            await widget.onSave(status, notes);
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            foregroundColor: Colors.white,
+          ),
+          child: const Text('Save Update'),
+        ),
+      ],
     );
   }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../models/incident_model.dart';
 import '../../models/timeline_event_model.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/utils/date_formatter.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/incident_provider.dart';
 import '../../services/firestore_service.dart';
 import '../../widgets/status_badge.dart';
 import '../../widgets/status_timeline.dart';
@@ -14,15 +17,72 @@ class IncidentDetailsScreen extends StatelessWidget {
 
   const IncidentDetailsScreen({super.key, required this.incident});
 
+  void _confirmDelete(BuildContext context, IncidentModel currentIncident) {
+    showDialog(
+      context: context,
+      builder: (dialogCtx) => AlertDialog(
+        title: const Text('Cancel Incident Report?'),
+        content: const Text(
+          'This will permanently remove the incident report, its status timeline, and attached photos from the cloud database.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogCtx),
+            child: const Text('Keep Report'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+            onPressed: () async {
+              Navigator.pop(dialogCtx);
+              final incidentProvider = context.read<IncidentProvider>();
+              final success = await incidentProvider.deleteIncident(
+                incidentId: currentIncident.id,
+                imageUrl: currentIncident.imageUrl,
+              );
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      success
+                          ? 'Incident report deleted successfully.'
+                          : 'Failed to delete report: ${incidentProvider.errorMessage ?? "Unknown error"}',
+                    ),
+                    backgroundColor:
+                        success ? AppColors.statusResolved : Colors.redAccent,
+                  ),
+                );
+                if (success) {
+                  Navigator.pop(context);
+                }
+              }
+            },
+            child: const Text('Delete Report', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final firestore = FirestoreService();
+    final firestore = context.read<FirestoreService>();
+    final authProvider = context.watch<AuthProvider>();
+    final currentUser = authProvider.currentUser;
     final category = incident.categoryInfo;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Incident Details'),
+        actions: [
+          if (currentUser != null &&
+              (currentUser.isStaff || currentUser.uid == incident.studentId))
+            IconButton(
+              icon: const Icon(CupertinoIcons.trash, color: Colors.redAccent),
+              tooltip: 'Delete Incident Report',
+              onPressed: () => _confirmDelete(context, incident),
+            ),
+        ],
       ),
       body: StreamBuilder<IncidentModel?>(
         stream: firestore.getIncidentStream(incident.id),
@@ -63,7 +123,7 @@ class IncidentDetailsScreen extends StatelessWidget {
                     StatusBadge(status: liveIncident.status),
                   ],
                 ),
-                const SizedBox(height: 14),
+                const SizedBox(height: 16),
 
                 // Title
                 Text(
@@ -71,48 +131,47 @@ class IncidentDetailsScreen extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w800,
-                    letterSpacing: -0.3,
                     color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
                   ),
                 ),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
 
-                // Location
+                // Location Pill
                 Row(
                   children: [
-                    const Icon(CupertinoIcons.location_solid, size: 14, color: AppColors.primaryLight),
+                    const Icon(CupertinoIcons.location_solid, size: 14, color: AppColors.aluRed),
                     const SizedBox(width: 4),
                     Text(
                       liveIncident.location,
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 16),
 
-                // Submitter Info
+                // Author Info
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: isDark ? AppColors.darkSurface : AppColors.lightSurface,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
                   ),
                   child: Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: AppColors.primary.withValues(alpha: 0.1),
-                          shape: BoxShape.circle,
+                      CircleAvatar(
+                        radius: 18,
+                        backgroundColor: AppColors.primary.withValues(alpha: 0.15),
+                        child: Text(
+                          liveIncident.studentName.isNotEmpty ? liveIncident.studentName[0].toUpperCase() : 'U',
+                          style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.primary),
                         ),
-                        child: const Icon(CupertinoIcons.person_fill, size: 16, color: AppColors.primary),
                       ),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 12),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,11 +199,11 @@ class IncidentDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
 
-                // Status Timeline Stepper
+                // Real-time Status Stepper Header & Events
                 StreamBuilder<List<TimelineEventModel>>(
                   stream: firestore.getIncidentTimeline(liveIncident.id),
-                  builder: (context, timelineSnap) {
-                    final events = timelineSnap.data ?? [];
+                  builder: (context, timelineSnapshot) {
+                    final events = timelineSnapshot.data ?? [];
                     return StatusTimelineWidget(
                       incident: liveIncident,
                       events: events,

@@ -24,6 +24,7 @@ class AuthProvider extends ChangeNotifier {
   bool get isAuthenticated => _currentUser != null;
   bool get isStaff => _currentUser?.isStaff ?? false;
   bool get isStudent => _currentUser?.isStudent ?? true;
+  bool get isEmailVerified => _authService.isEmailVerified;
 
   void _init() {
     _authService.authStateChanges.listen((User? firebaseUser) async {
@@ -48,6 +49,16 @@ class AuthProvider extends ChangeNotifier {
       _isInitializing = false;
       notifyListeners();
     }
+  }
+
+  Future<bool> checkEmailVerified() async {
+    final verified = await _authService.reloadAndCheckEmailVerified();
+    notifyListeners();
+    return verified;
+  }
+
+  Future<void> sendEmailVerification() async {
+    await _authService.sendEmailVerification();
   }
 
   Future<bool> signIn(String email, String password) async {

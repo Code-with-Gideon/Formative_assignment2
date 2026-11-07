@@ -11,6 +11,7 @@ import 'providers/auth_provider.dart';
 import 'providers/incident_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/auth/login_screen.dart';
+import 'screens/auth/verify_email_screen.dart';
 import 'screens/student/student_home_screen.dart';
 import 'screens/staff/staff_dashboard_screen.dart';
 
@@ -90,6 +91,11 @@ class AuthGate extends StatelessWidget {
 
     if (!authProvider.isAuthenticated) {
       return const LoginScreen();
+    }
+
+    // Require verified email address to prevent unverified domain spoofing
+    if (!authProvider.isEmailVerified) {
+      return const VerifyEmailScreen();
     }
 
     // Role-based routing

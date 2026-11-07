@@ -37,7 +37,7 @@ class _CreateIncidentScreenState extends State<CreateIncidentScreen> {
   }
 
   void _pickPhoto(ImageSource source) async {
-    final storage = StorageService();
+    final storage = context.read<StorageService>();
     final file = await storage.pickImage(source);
     if (file != null) {
       setState(() => _selectedImage = file);

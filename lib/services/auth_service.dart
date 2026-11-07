@@ -18,6 +18,8 @@ class AuthService {
   User? get currentFirebaseUser => _auth.currentUser;
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
+  bool get isEmailVerified => _auth.currentUser?.emailVerified ?? false;
+
   Future<void> _ensureGoogleInitialized() async {
     if (!_googleInitialized) {
       await GoogleSignIn.instance.initialize(
@@ -38,7 +40,7 @@ class AuthService {
     }
   }
 
-  // Register user with automatic domain-based role detection
+  // Register user with automatic domain-based role detection and email verification
   // @alueducation.com => automatically assigned 'staff'
   // @alustudent.com => automatically assigned 'student'
   Future<UserModel> register({
@@ -77,12 +79,37 @@ class AuthService {
       await _firestore.collection('users').doc(uid).set(userModel.toMap());
       await credential.user!.updateDisplayName(fullName.trim());
 
+      // Send institutional email verification link to verify ALU domain ownership
+      try {
+        await credential.user!.sendEmailVerification();
+      } catch (_) {
+        // Continue even if initial email dispatch is delayed
+      }
+
       return userModel;
     } on FirebaseAuthException catch (e) {
       throw _parseAuthError(e);
     } catch (e) {
       throw 'Registration failed: $e';
     }
+  }
+
+  // Send or resend email verification link
+  Future<void> sendEmailVerification() async {
+    final user = _auth.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+    }
+  }
+
+  // Reload current user state and verify email confirmation
+  Future<bool> reloadAndCheckEmailVerified() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      await user.reload();
+      return _auth.currentUser?.emailVerified ?? false;
+    }
+    return false;
   }
 
   // Sign in existing user
@@ -98,6 +125,7 @@ class AuthService {
 
       final uid = credential.user!.uid;
       final profile = await getUserProfile(uid);
+
       if (profile != null) {
         return profile;
       }

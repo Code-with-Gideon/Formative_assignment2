@@ -119,8 +119,14 @@ class FirestoreService {
     });
   }
 
-  // Delete incident (student can cancel own submitted report or staff admin)
+  // Delete incident, cascading through timeline subcollection and parent doc
   Future<void> deleteIncident(String incidentId) async {
+    // Delete all timeline subcollection audit records to avoid orphaned documents
+    final timelineDocs = await _incidents.doc(incidentId).collection('timeline').get();
+    for (final doc in timelineDocs.docs) {
+      await doc.reference.delete();
+    }
+    // Delete parent incident document
     await _incidents.doc(incidentId).delete();
   }
 }
