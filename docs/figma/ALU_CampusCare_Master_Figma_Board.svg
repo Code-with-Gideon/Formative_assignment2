@@ -35,7 +35,7 @@
             <text x="0" y="46" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="800" letter-spacing="1.2" fill="#FFFFFF">UNIVERSITY</text>
           </g>
   </g>
-    <text x="315" y="54" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF">ALU CampusCare — UI/UX Design Specification &amp; Prototype Flow</text>
+    <text x="315" y="54" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF">ALU CampusCare - UI/UX Design Specification &amp; Prototype Flow</text>
     <text x="315" y="82" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#CBD5E1">Stage 1: Low-Fidelity Wireframes   →   Stage 2: Pixel-Sampled ALU Design System (#002E6D / #D00D2D)   →   Stage 3: High-Fidelity Mobile Screens (393×852)</text>
     <rect x="2780" y="34" width="224" height="42" rx="10" fill="#D00D2D"/>
     <text x="2892" y="60" text-anchor="middle" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#FFFFFF">READY FOR IMPLEMENTATION</text>
@@ -1013,7 +1013,7 @@
         <text x="0" y="0" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#0B1A33">Campus Location</text>
         <rect x="0" y="10" width="353" height="48" rx="12" fill="#FFFFFF" stroke="#E1E6EE"/>
         <circle cx="22" cy="34" r="5" fill="#D00D2D"/>
-        <text x="38" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="600" fill="#0B1A33">Block B — Classrooms (Room 204)</text>
+        <text x="38" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="600" fill="#0B1A33">Block B - Classrooms (Room 204)</text>
         <text x="330" y="39" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#5C6672">▾</text>
       </g>
 
@@ -1085,7 +1085,7 @@
 
         <text x="0" y="54" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="800" fill="#0B1A33">Water shortage in Pod B</text>
         <circle cx="7" cy="74" r="4.5" fill="#D00D2D"/>
-        <text x="18" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#5C6672">Student Residence — Block B</text>
+        <text x="18" y="78" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" fill="#5C6672">Student Residence - Block B</text>
 
         <!-- Reporter Card -->
         <rect x="0" y="94" width="353" height="60" rx="14" fill="#FFFFFF" stroke="#E1E6EE"/>

@@ -1,10 +1,10 @@
-# ALU CampusCare — Campus Incident Reporting App
+# ALU CampusCare: Campus Incident Reporting App
 
 CampusCare is a mobile application built with Flutter and Google Firebase for the African Leadership University (ALU) campus community in Kigali. It gives students and campus operations staff a direct, transparent way to report, track, and resolve facility and maintenance issues across campus without reports getting lost in informal WhatsApp groups.
 
 ### 🔗 Official Project Links
 - **YouTube Demonstration Video (9m 57s Full Walkthrough):** [https://youtu.be/WqbBmW0JinQ](https://youtu.be/WqbBmW0JinQ)
-- **Live Figma UI/UX Design System & Screens:** [ALU CampusCare — Figma Design File](https://www.figma.com/design/r8063fxio0oJlnPn2PMv74/ALU-CampusCare--UI-UX-Design-System---Screens?node-id=1-705&t=8FvxZpN2DVIUthzl-1)
+- **Live Figma UI/UX Design System & Screens:** [ALU CampusCare: Figma Design File](https://www.figma.com/design/r8063fxio0oJlnPn2PMv74/ALU-CampusCare--UI-UX-Design-System---Screens?node-id=1-705&t=8FvxZpN2DVIUthzl-1)
 - **Local Figma Vector Artboards:** [`docs/figma/`](docs/figma/)
 - **Full Technical Architecture Report:** [`docs/Technical_Report.md`](docs/Technical_Report.md)
 
@@ -12,10 +12,10 @@ CampusCare is a mobile application built with Flutter and Google Firebase for th
 
 ## 1. Why CampusCare?
 
-Campus life moves fast, and everyday infrastructure issues—such as low water pressure in the residential pods, a dead HDMI port on a classroom projector, power faults, or broken furniture—often get reported through scattered group chats where nobody can tell if the issue is actually being fixed.
+Campus life moves fast, and everyday infrastructure issues (such as low water pressure in the residential pods, a dead HDMI port on a classroom projector, power faults, or broken furniture) often get reported through scattered group chats where nobody can tell if the issue is actually being fixed.
 
 CampusCare brings both sides onto one platform:
-- **Students (`@alustudent.com`)** can log an incident in under a minute—picking a category, choosing the exact campus building/room, typing a short description, and attaching a photo—while tracking progress through a 3-stage status stepper (`Submitted` -> `In Progress` -> `Resolved`).
+- **Students (`@alustudent.com`)** can log an incident in under a minute by picking a category, choosing the exact campus building or room, typing a short description, and attaching a photo, while tracking progress through a 3-stage status stepper (`Submitted` -> `In Progress` -> `Resolved`).
 - **Campus Operations & Facilities Staff (`@alueducation.com`)** get a dedicated Staff Triage Dashboard where they can filter incoming tickets, update statuses, and leave timestamped resolution notes (e.g., *"Plumbing technician dispatched to Pod B"*) that sync back to the student's phone in real time.
 
 ---
@@ -97,18 +97,18 @@ lib/
 
 Watch the full walkthrough on YouTube: **[https://youtu.be/WqbBmW0JinQ](https://youtu.be/WqbBmW0JinQ)**
 
-- `0:00 – 1:15` — Introduction, VS Code Folder Structure (`pubspec.yaml` & `lib/`) & Student Home Dashboard
-- `1:15 – 2:45` — Reporting a Campus Incident (Category Grid, Campus Location, Description & Photo Upload)
-- `2:45 – 3:35` — Student "My Reports", Campus Feed Filtering & Profile Tab
-- `3:35 – 5:10` — Institutional Login, Registration & Domain Validation Error Handling (`@alustudent.com` / `@alueducation.com`)
-- `5:10 – 6:50` — Staff Triage Dashboard: Filtering Queue, Updating Status (`In Progress` / `Resolved`) & Staff Notes
-- `6:50 – 8:00` — "Continue with Google" OAuth Sign-In Flow & Real-Time Student Timeline Stepper Update
-- `8:00 – 8:55` — Firebase Storage Console: Verifying Uploaded Incident Photos (`incidents/`)
-- `8:55 – 9:25` — Cloud Firestore Console: Inspecting Live `incidents`, `users` & `timeline` Collections
-- `9:25 – 9:57` — Firebase Authentication Console (Registered Users & Sign-In Providers) & Wrap-Up
+- `0:00 - 1:15`: Introduction, VS Code Folder Structure (`pubspec.yaml` & `lib/`), and Student Home Dashboard
+- `1:15 - 2:45`: Reporting a Campus Incident (Category Grid, Campus Location, Description & Photo Upload)
+- `2:45 - 3:35`: Student "My Reports", Campus Feed Filtering, and Profile Tab
+- `3:35 - 5:10`: Institutional Login, Registration, and Domain Validation Error Handling (`@alustudent.com` / `@alueducation.com`)
+- `5:10 - 6:50`: Staff Triage Dashboard: Filtering Queue, Updating Status (`In Progress` / `Resolved`), and Staff Notes
+- `6:50 - 8:00`: "Continue with Google" OAuth Sign-In Flow and Real-Time Student Timeline Stepper Update
+- `8:00 - 8:55`: Firebase Storage Console: Verifying Uploaded Incident Photos (`incidents/`)
+- `8:55 - 9:25`: Cloud Firestore Console: Inspecting Live `incidents`, `users`, and `timeline` Collections
+- `9:25 - 9:57`: Firebase Authentication Console (Registered Users & Sign-In Providers) and Wrap-Up
 
 ---
 
 ## 6. Author
 
-- **Olowoyo Erioluwa Gideon** (`Code-with-Gideon`) — African Leadership University (ALU), Kigali, Rwanda.
+- **Olowoyo Erioluwa Gideon** (`Code-with-Gideon`), African Leadership University (ALU), Kigali, Rwanda.

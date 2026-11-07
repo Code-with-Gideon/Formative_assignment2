@@ -1,20 +1,20 @@
-# Technical Report: Design and Engineering of ALU CampusCare — A Role-Based Mobile Incident Reporting System
+# Technical Report: Design and Engineering of ALU CampusCare: A Role-Based Mobile Incident Reporting System
 
 **Author:** Olowoyo Erioluwa Gideon (`Code-with-Gideon`)  
 **Institution:** African Leadership University (ALU), Bumbogo Campus, Kigali, Rwanda  
 **Degree Programme:** BSc. (Hons) Software Engineering  
 **Course:** Mobile Application Development (Flutter & Firebase)  
-**Assessment:** Formative Assignment 2 (Individual Assignment 2 — 55 Points)  
-**Submission Date:** November 7, 2026  
+**Assessment:** Formative Assignment 2 (Individual Assignment 2, 55 Points)  
+**Submission Date:** November 8, 2026  
 **GitHub Repository:** https://github.com/Code-with-Gideon/Formative_assignment2.git  
-**Demonstration Video (YouTube — 9m 57s):** https://youtu.be/WqbBmW0JinQ  
+**Demonstration Video (YouTube, 9m 57s):** https://youtu.be/WqbBmW0JinQ  
 **Figma UI/UX Design Suite:** https://www.figma.com/design/r8063fxio0oJlnPn2PMv74/ALU-CampusCare--UI-UX-Design-System---Screens?node-id=1-705&t=8FvxZpN2DVIUthzl-1  
 
 ---
 
 ## Abstract
 
-Daily operations on a university campus depend on how quickly facilities teams can identify and repair broken infrastructure. At the African Leadership University (ALU) campus in Kigali, students have historically reported maintenance issues—such as water supply interruptions in the residence blocks, dead HDMI ports on classroom projectors, electrical socket faults, damaged furniture, and sanitation hazards—through informal word-of-mouth or unindexed WhatsApp group chats. That informal workflow loses critical context, produces duplicate messages, and leaves students with no visibility into whether a technician has been dispatched. This technical report documents the end-to-end product design, software architecture, data modeling, and verification of **ALU CampusCare**, a cross-platform mobile incident reporting application built with Flutter (Dart 3) and Google Firebase [1], [2]. The system enforces institutional role-based access control (RBAC) across Email/Password and Google OAuth 2.0 sign-in flows by restricting access to verified ALU domains (`@alustudent.com` and `@alueducation.com`) [4]. Application state is managed through the Provider (`ChangeNotifier`) pattern coupled with reactive Cloud Firestore document streams and Firebase Cloud Storage photo uploads [2], [3]. We present napkin-math capacity calculations for the ALU Kigali campus, justify key architectural trade-offs, evaluate security rules and misuse mitigation strategies, and summarize unit test and static analysis verification results.
+Daily operations on a university campus depend on how quickly facilities teams can identify and repair broken infrastructure. At the African Leadership University (ALU) campus in Kigali, students have historically reported maintenance issues (such as water supply interruptions in the residence blocks, dead HDMI ports on classroom projectors, electrical socket faults, damaged furniture, and sanitation hazards) through informal word-of-mouth or unindexed WhatsApp group chats. That informal workflow loses critical context, produces duplicate messages, and leaves students with no visibility into whether a technician has been dispatched. This technical report documents the end-to-end product design, software architecture, data modeling, and verification of **ALU CampusCare**, a cross-platform mobile incident reporting application built with Flutter (Dart 3) and Google Firebase [1], [2]. The system enforces institutional role-based access control (RBAC) across Email/Password and Google OAuth 2.0 sign-in flows by restricting access to verified ALU domains (`@alustudent.com` and `@alueducation.com`) [4]. Application state is managed through the Provider (`ChangeNotifier`) pattern coupled with reactive Cloud Firestore document streams and Firebase Cloud Storage photo uploads [2], [3]. We present napkin-math capacity calculations for the ALU Kigali campus, justify key architectural trade-offs, evaluate security rules and misuse mitigation strategies, and summarize unit test and static analysis verification results.
 
 ---
 
@@ -34,9 +34,9 @@ Informal WhatsApp reporting at ALU suffered from the exact same three failure mo
 
 Rather than building a generic todo-list template, CampusCare was engineered specifically around the physical layout and administrative structure of ALU Kigali [1]:
 
-- **Six Standardized Incident Categories (`IncidentCategory.all`)**: Defined in `lib/core/constants/app_constants.dart` (lines 79–116), every report is classified into one of six operational domains: `facilities` (*Facilities*), `water` (*Water*), `electricity` (*Electricity*), `safety` (*Safety*), `sanitation` (*Sanitation*), or `furniture` (*Furniture*). Each category carries a dedicated Cupertino icon and semantic accent colour so staff can visually scan a triage queue in under a second.
-- **Eleven Pre-Configured ALU Campus Zones (`CampusLocations.options`)**: Defined in `lib/core/constants/app_constants.dart` (lines 126–140), the submission form replaces free-text location guessing with a standardized dropdown of actual ALU zones: `Block A - Classrooms`, `Block B - Labs`, `Block B - Room 204`, `Library - Ground Floor`, `Library - Study Hall`, `Cafeteria & Dining Hall`, `Student Residence - Block 1`, `Student Residence - Block 2`, `Leadership Center`, `Sports & Recreation Area`, and `Administration Building`.
-- **Four-State Ticket Lifecycle (`IncidentStatus`)**: Defined in `lib/core/constants/app_constants.dart` (lines 4–64), every ticket moves through a strict state machine: `submitted` (*Submitted*), `inProgress` (*In Progress*), `resolved` (*Resolved*), or `dismissed` (*Dismissed* for duplicate or invalid reports).
+- **Six Standardized Incident Categories (`IncidentCategory.all`)**: Defined in `lib/core/constants/app_constants.dart` (lines 79-116), every report is classified into one of six operational domains: `facilities` (*Facilities*), `water` (*Water*), `electricity` (*Electricity*), `safety` (*Safety*), `sanitation` (*Sanitation*), or `furniture` (*Furniture*). Each category carries a dedicated Cupertino icon and semantic accent colour so staff can visually scan a triage queue in under a second.
+- **Eleven Pre-Configured ALU Campus Zones (`CampusLocations.options`)**: Defined in `lib/core/constants/app_constants.dart` (lines 126-140), the submission form replaces free-text location guessing with a standardized dropdown of actual ALU zones: `Block A - Classrooms`, `Block B - Labs`, `Block B - Room 204`, `Library - Ground Floor`, `Library - Study Hall`, `Cafeteria & Dining Hall`, `Student Residence - Block 1`, `Student Residence - Block 2`, `Leadership Center`, `Sports & Recreation Area`, and `Administration Building`.
+- **Four-State Ticket Lifecycle (`IncidentStatus`)**: Defined in `lib/core/constants/app_constants.dart` (lines 4-64), every ticket moves through a strict state machine: `submitted` (*Submitted*), `inProgress` (*In Progress*), `resolved` (*Resolved*), or `dismissed` (*Dismissed* for duplicate or invalid reports).
 
 ---
 
@@ -59,7 +59,7 @@ Putting Firebase SDK calls, form validation rules, and UI layout code inside the
 
 3. **Service Abstraction Layer (`lib/services/`)**:
    Encapsulates all external communication with Google Firebase SDKs and device hardware plugins:
-   - `AuthService` (`lib/services/auth_service.dart`): Wraps `FirebaseAuth`, `GoogleSignIn`, and the `users` collection lookup. Translates ten specific `FirebaseAuthException` error codes (lines 187–211) and native `PlatformException` channel errors into clear, human-readable guidance.
+   - `AuthService` (`lib/services/auth_service.dart`): Wraps `FirebaseAuth`, `GoogleSignIn`, and the `users` collection lookup. Translates ten specific `FirebaseAuthException` error codes (lines 187-211) and native `PlatformException` channel errors into clear, human-readable guidance.
    - `FirestoreService` (`lib/services/firestore_service.dart`): Manages all CRUD operations and real-time `snapshots()` streams for the `incidents` collection and its nested `timeline` subcollection.
    - `StorageService` (`lib/services/storage_service.dart`): Wraps `ImagePicker` and `FirebaseStorage` to compress and upload photographic evidence.
 
@@ -68,7 +68,7 @@ Putting Firebase SDK calls, form validation rules, and UI layout code inside the
 
 ### 2.2 Dependency Injection and Application Bootstrap (`lib/main.dart`)
 
-At startup, `main()` initializes the Flutter widget binding, boots the Firebase app using platform-specific options (`DefaultFirebaseOptions.currentPlatform`), preloads the saved theme boolean from `SharedPreferences`, and injects all services and providers at the root of the widget tree using `MultiProvider` (`lib/main.dart`, lines 30–54):
+At startup, `main()` initializes the Flutter widget binding, boots the Firebase app using platform-specific options (`DefaultFirebaseOptions.currentPlatform`), preloads the saved theme boolean from `SharedPreferences`, and injects all services and providers at the root of the widget tree using `MultiProvider` (`lib/main.dart`, lines 30-54):
 
 ```dart
 MultiProvider(
@@ -125,7 +125,7 @@ Stores each incident report as a self-contained document so list cards on the St
 - `staffNotes` and `assignedStaffName` (`String?`): Latest resolution note and name of the staff member handling the ticket.
 
 #### 3. Audit Subcollection: `incidents/{incidentId}/timeline/{eventId}` (`lib/models/timeline_event_model.dart`)
-Whenever an incident is created (`FirestoreService.createIncident()`, lines 32–39) or updated by staff (`FirestoreService.updateIncidentStatus()`, lines 112–119), an immutable audit document is appended to `incidents/{incidentId}/timeline`:
+Whenever an incident is created (`FirestoreService.createIncident()`, lines 32-39) or updated by staff (`FirestoreService.updateIncidentStatus()`, lines 112-119), an immutable audit document is appended to `incidents/{incidentId}/timeline`:
 - `id` (`String`): Auto-generated event document ID.
 - `title` (`String`): Milestone heading (e.g., `"Report Submitted"` or `"Status changed to In Progress"`).
 - `note` (`String`): Detailed operational comment entered by the student or staff member.
@@ -137,7 +137,7 @@ Whenever an incident is created (`FirestoreService.createIncident()`, lines 32�
 
 A common pitfall in Cloud Firestore occurs when combining equality filters (`.where('category', isEqualTo: ...)` or `.where('studentId', isEqualTo: ...)`) with a range sort on a different field (`.orderBy('createdAt', descending: true)`). Firestore requires a pre-built composite index for every unique combination of filter fields and sort orders; if any combination is missing, Firestore throws a fatal `FirebaseException ([cloud_firestore/failed-precondition] The query requires an index)` at runtime [3].
 
-In `FirestoreService.getIncidentsStream()` (`lib/services/firestore_service.dart`, lines 47–71), we solved this by executing selective equality filtering on the server and performing the chronological sort in Dart client memory:
+In `FirestoreService.getIncidentsStream()` (`lib/services/firestore_service.dart`, lines 47-71), we solved this by executing selective equality filtering on the server and performing the chronological sort in Dart client memory:
 
 ```dart
 return query.snapshots().map((snapshot) {
@@ -153,7 +153,7 @@ Because single-field equality filters use Firestore's automatic single-field ind
 
 ### 3.3 Firebase Storage Hierarchy and Client-Side Image Compression
 
-In `StorageService.pickImage()` (`lib/services/storage_service.dart`, lines 12–25), photographs captured from the camera or gallery are constrained at the native platform layer before upload:
+In `StorageService.pickImage()` (`lib/services/storage_service.dart`, lines 12-25), photographs captured from the camera or gallery are constrained at the native platform layer before upload:
 
 ```dart
 final XFile? file = await _picker.pickImage(
@@ -164,7 +164,7 @@ final XFile? file = await _picker.pickImage(
 );
 ```
 
-When `IncidentProvider.submitIncident()` (lines 82–88) runs, it generates a millisecond epoch folder key (`tempId`) and invokes `StorageService.uploadIncidentPhoto()`, which writes the binary file to Firebase Cloud Storage under:
+When `IncidentProvider.submitIncident()` (lines 82-88) runs, it generates a millisecond epoch folder key (`tempId`) and invokes `StorageService.uploadIncidentPhoto()`, which writes the binary file to Firebase Cloud Storage under:
 
 ```text
 incidents/{tempId}/{timestamp}.{ext}
@@ -179,7 +179,7 @@ To verify that this schema scales for the ALU Kigali campus without incurring su
 | System Metric | ALU Kigali Campus Estimate | Engineering Impact |
 | :--- | :--- | :--- |
 | **Active Campus Population** | ~2,500 Students + 50 Operations Staff | Total `users` collection size: $2,550 \times 0.45\text{ KB} \approx 1.15\text{ MB}$ |
-| **Incident Submission Rate** | ~15–25 reports/day (~6,000 reports/year) | Peak write concurrency $< 1\text{ write/sec}$ (Firestore limit: $10,000\text{/sec}$) |
+| **Incident Submission Rate** | ~15-25 reports/day (~6,000 reports/year) | Peak write concurrency $< 1\text{ write/sec}$ (Firestore limit: $10,000\text{/sec}$) |
 | **Firestore Document Size** | ~1.15 KB per `incident` + $3 \times 0.35\text{ KB}$ `timeline` | $6,000 \times 2.2\text{ KB} \approx 13.2\text{ MB/year}$ (Free Spark limit: $1\text{ GiB}$) |
 | **Photo Payload Reduction** | Raw 12 MP camera photo ($4.8\text{ MB}$) $\rightarrow$ `800px @ Q65` ($85\text{ KB}$) | **98.2% bandwidth reduction**; $3,000\text{ photos/yr} \approx 255\text{ MB/year}$ (Free tier: $5\text{ GB}$) |
 | **Daily Firestore Document Reads** | ~400 active daily sessions $\times 40$ docs | ~16,000 reads/day (well under the 50,000 reads/day Firebase free quota) |
@@ -196,7 +196,7 @@ A common mistake in Flutter apps using Firebase is re-querying Firestore every t
 
 In CampusCare, `IncidentProvider` (`lib/providers/incident_provider.dart`) separates **data streaming** from **view filtering**:
 1. **Live Stream Pipeline**: Screens subscribe to `incidentProvider.getAllCampusIncidentsStream()` or `incidentProvider.getMyReportsStream(uid)` inside a `StreamBuilder<List<IncidentModel>>`. Firestore pushes incremental document deltas over a single persistent WebSocket connection whenever a report is created or updated by staff.
-2. **Synchronous In-Memory Filtering & Aggregation**: When a student types a search query (e.g., `"projector"`) or selects a category chip (e.g., `Electricity`), `IncidentProvider.setSearchQuery()` or `setCategoryFilter()` mutates the provider's state and calls `notifyListeners()`. The watching screen immediately re-runs `incidentProvider.filterList(allIncidents)` (lines 142–157) and `incidentProvider.computeStats(allIncidents)` (lines 160–188) against the already-cached stream snapshot in memory—delivering $60\text{ fps}$ instant filtering with **zero additional Firestore network reads**.
+2. **Synchronous In-Memory Filtering & Aggregation**: When a student types a search query (e.g., `"projector"`) or selects a category chip (e.g., `Electricity`), `IncidentProvider.setSearchQuery()` or `setCategoryFilter()` mutates the provider's state and calls `notifyListeners()`. The watching screen immediately re-runs `incidentProvider.filterList(allIncidents)` (lines 142-157) and `incidentProvider.computeStats(allIncidents)` (lines 160-188) against the already-cached stream snapshot in memory, delivering $60\text{ fps}$ instant filtering with **zero additional Firestore network reads**.
 
 ### 4.2 Architectural Comparison of Flutter State Management Options
 
@@ -208,7 +208,7 @@ In CampusCare, `IncidentProvider` (`lib/providers/incident_provider.dart`) separ
 | **Suitability for CampusCare Scope** | Insufficient per rubric [1] | **Optimal balance** of clarity and speed [2] | Over-engineered for 3 state domains | Viable alternative, higher syntax overhead |
 
 > [!NOTE]
-> **Appropriate Use of Local `setState()`**: While application-wide state (authentication session, user role, incident streams, search/category filters, and theme mode) lives strictly inside `AuthProvider`, `IncidentProvider`, and `ThemeProvider`, ephemeral widget-local UI state—such as toggling password visibility (`_obscurePassword`) or holding a form's selected dropdown value before submission—uses local `StatefulWidget` state in accordance with official Flutter architectural guidance [2].
+> **Appropriate Use of Local `setState()`**: While application-wide state (authentication session, user role, incident streams, search/category filters, and theme mode) lives strictly inside `AuthProvider`, `IncidentProvider`, and `ThemeProvider`, ephemeral widget-local UI state (such as toggling password visibility `_obscurePassword` or holding a form's selected dropdown value before submission) uses local `StatefulWidget` state in accordance with official Flutter architectural guidance [2].
 
 ---
 
@@ -231,19 +231,19 @@ CampusCare partitions permissions between two institutional personas: **Students
 
 Because the rubric requires ensuring that the application can only be accessed with an official ALU email (Page 6) [1], CampusCare enforces domain verification at four sequential checkpoints (Figure 4):
 
-1. **Pre-Submission Form Validation (`lib/core/utils/validators.dart`, lines 3–20)**:
+1. **Pre-Submission Form Validation (`lib/core/utils/validators.dart`, lines 3-20)**:
    `Validators.validateEmail()` strips whitespace, normalizes the string to lowercase, validates the RFC email structure via regex, and explicitly checks `email.endsWith('@alustudent.com')` or `email.endsWith('@alueducation.com')`. Non-ALU domains are rejected before any network request is made.
-2. **Deterministic Suffix-Based Role Assignment (`lib/services/auth_service.dart`, lines 56–60)**:
+2. **Deterministic Suffix-Based Role Assignment (`lib/services/auth_service.dart`, lines 56-60)**:
    To prevent privilege escalation (such as a student attempting to register as a staff member), the registration flow does not trust a user-selected role toggle. Instead, `AuthService.register()` derives the role directly from the verified email suffix:
    ```dart
    final String resolvedRole = normalizedEmail.endsWith('@alueducation.com')
        ? 'staff'
        : 'student';
    ```
-3. **Google OAuth 2.0 Post-Handshake Domain Gate (`lib/services/auth_service.dart`, lines 124–159)**:
+3. **Google OAuth 2.0 Post-Handshake Domain Gate (`lib/services/auth_service.dart`, lines 124-159)**:
    When a user taps **Continue with Google**, the native Android account picker allows selecting *any* Google account on the device. Immediately after `GoogleSignIn.instance.authenticate()` returns a `GoogleSignInAccount`, `AuthService.signInWithGoogle()` inspects `googleAccount.email`. If the account is not an `@alustudent.com` or `@alueducation.com` address, the service immediately calls `await GoogleSignIn.instance.signOut()` **before** exchanging the OAuth ID token with Firebase Auth and throws an access-restricted error message displaying the rejected email address.
-4. **Session Restoration & Role Routing (`AuthGate` in `lib/main.dart`, lines 75–102)**:
-   On app launch, `AuthGate` watches `AuthProvider.isInitializing`. While the Firebase session token and Firestore `users/{uid}` document are resolving, it renders a centered `CupertinoActivityIndicator`—preventing screen flicker or unauthorized flashes of the staff dashboard—before routing to `StaffDashboardScreen` (`authProvider.isStaff`) or `StudentHomeScreen`.
+4. **Session Restoration & Role Routing (`AuthGate` in `lib/main.dart`, lines 75-102)**:
+   On app launch, `AuthGate` watches `AuthProvider.isInitializing`. While the Firebase session token and Firestore `users/{uid}` document are resolving, it renders a centered `CupertinoActivityIndicator` (preventing screen flicker or unauthorized flashes of the staff dashboard) before routing to `StaffDashboardScreen` (`authProvider.isStaff`) or `StudentHomeScreen`.
 
 ![Figure 4: Institutional Authentication & Google OAuth 2.0 Domain Gate (Login & Registration Workflows)](fig4.png)
 
@@ -288,7 +288,7 @@ service cloud.firestore {
 
 The assignment rubric explicitly evaluates how the solution addresses **privacy and misuse** (Page 9) [1]. CampusCare incorporates four mechanisms to balance campus transparency with student privacy and spam prevention:
 1. **Verified Identity Attribution Against Spam**: Because every submission automatically binds the authenticated user's `studentId`, `studentName`, and institutional `studentEmail` from `AuthProvider.currentUser`, anonymous prank reports or malicious false alarms cannot be submitted.
-2. **Staff Dismissal Workflow (`IncidentStatus.dismissed`)**: If a student submits a duplicate report, a test ticket, or an inappropriate photo, staff can transition the ticket to `Dismissed` via the Staff Triage modal or delete it via `FirestoreService.deleteIncident()`. As implemented in `IncidentProvider.computeStats()` (`lib/providers/incident_provider.dart`, lines 177–178), dismissed tickets are excluded from active progress counts so they do not skew campus maintenance metrics.
+2. **Staff Dismissal Workflow (`IncidentStatus.dismissed`)**: If a student submits a duplicate report, a test ticket, or an inappropriate photo, staff can transition the ticket to `Dismissed` via the Staff Triage modal or delete it via `FirestoreService.deleteIncident()`. As implemented in `IncidentProvider.computeStats()` (`lib/providers/incident_provider.dart`, lines 177-178), dismissed tickets are excluded from active progress counts so they do not skew campus maintenance metrics.
 3. **Scoped Personal History vs. Public Campus Feed**: Students can view the status of campus-wide infrastructure issues on the Campus Feed (preventing ten students from logging the same broken water dispenser in Block A), while their personal reporting history is isolated in the **My Reports** tab (`studentId == currentUser.uid`).
 4. **Minimal PII Collection**: The `UserModel` stores only institutional contact details required for maintenance follow-up (name, ALU email, optional student ID) and never collects private phone numbers, residential room keys, or device location GPS traces.
 
@@ -298,15 +298,15 @@ The assignment rubric explicitly evaluates how the solution addresses **privacy 
 
 Before writing the final Flutter presentation layer, the complete interface was designed in **Figma** (archived both at the live Figma link and as local vector artboards under `docs/figma/`) across three progressive stages (Figure 3):
 
-1. **Stage 1 — Low-Fidelity Structural Wireframes (`01_Low_Fidelity_Wireframes.svg`)**:
+1. **Stage 1: Low-Fidelity Structural Wireframes (`01_Low_Fidelity_Wireframes.svg`)**:
    Established the `393 × 852 px` mobile viewport geometry, `20 px` horizontal screen margins, thumb-zone primary action placement, and bottom navigation dock across the four core workflows (Login, Student Home, Report Form, and Staff Triage) before introducing colour.
-2. **Stage 2 — Pixel-Sampled ALU Institutional Brand System (`00_Design_System_and_Tokens.svg`)**:
+2. **Stage 2: Pixel-Sampled ALU Institutional Brand System (`00_Design_System_and_Tokens.svg`)**:
    Early prototypes used a generic indigo palette that felt disconnected from ALU. To give the application an authentic institutional identity, we sampled the exact hex values from the official African Leadership University crest and wordmark (`lib/core/constants/app_colors.dart`):
    - **ALU Primary Navy (`#002E6D`)**: Auth hero headers, primary action buttons, Student Home hero banner, and app launcher icons.
    - **ALU Crimson Red (`#D00D2D`)**: 5 px top brand stripe on hero cards, urgent safety category accents, and the live triage badge.
    - **ALU Slate Grey (`#77818D`)**: Muted metadata labels, relative timestamps, and light-mode structural dividers.
-   - **Semantic Status Tokens**: Kept uniform across all screens—ALU Blue (`#1E5BB8` on `#E8F0FE`) for *Submitted*, Amber (`#D97706` on `#FEF3C7`) for *In Progress*, and Emerald (`#10B981` on `#D1FAE5`) for *Resolved*.
-3. **Stage 3 — High-Fidelity Multi-Theme Artboards (`ALU_CampusCare_Master_Figma_Board.svg`)**:
+   - **Semantic Status Tokens**: Kept uniform across all screens: ALU Blue (`#1E5BB8` on `#E8F0FE`) for *Submitted*, Amber (`#D97706` on `#FEF3C7`) for *In Progress*, and Emerald (`#10B981` on `#D1FAE5`) for *Resolved*.
+3. **Stage 3: High-Fidelity Multi-Theme Artboards (`ALU_CampusCare_Master_Figma_Board.svg`)**:
    Translated 1:1 into Flutter Material 3 + Cupertino widgets in `lib/core/theme/app_theme.dart` and `lib/widgets/alu_brand.dart`.
 
 ![Figure 3: Pre-Implementation Low-Fidelity Wireframes & Pixel-Sampled ALU Design Token System](fig3.png)
@@ -318,7 +318,7 @@ The interface design applies established human-computer interaction principles f
 - **Visibility of System Status (Nielsen Heuristic #1 [5])**: On `IncidentDetailsScreen`, the custom 3-node `StatusTimeline` widget (`lib/widgets/status_timeline.dart`) renders a vertical stepper showing *Submitted* $\rightarrow$ *In Progress* $\rightarrow$ *Resolved*, complete with green completion checkmarks, active status badges, staff resolution notes, and exact timestamps (Figure 6, left).
 - **Recognition Rather Than Recall (Nielsen Heuristic #6 [5])**: On `CreateIncidentScreen`, rather than forcing a stressed student to type a category or guess how to spell a building name, the form presents a 6-tile visual icon grid and a pre-populated location selector (Figure 5, right).
 - **Error Prevention and Informative Recovery (Nielsen Heuristics #5 & #9 [5])**: Forms validate inputs inline via `CustomTextField`, disable submission buttons while `isSubmitting` is true (showing a loading spinner to prevent double-taps), and surface descriptive red error banners whenever network or domain checks fail.
-- **WCAG 2.1 AA/AAA Contrast Compliance [7]**: Both Light Mode (canvas `#F4F6FA`, cards `#FFFFFF`, primary text `#0B192C` — contrast ratio $15.8:1$) and Dark Mode (canvas `#00132F`, cards `#072146`, primary text `#F8FAFC` — contrast ratio $14.9:1$) exceed the WCAG 2.1 AA minimum ($4.5:1$) and AAA enhanced ($7.0:1$) legibility thresholds.
+- **WCAG 2.1 AA/AAA Contrast Compliance [7]**: Both Light Mode (canvas `#F4F6FA`, cards `#FFFFFF`, primary text `#0B192C`, contrast ratio $15.8:1$) and Dark Mode (canvas `#00132F`, cards `#072146`, primary text `#F8FAFC`, contrast ratio $14.9:1$) exceed the WCAG 2.1 AA minimum ($4.5:1$) and AAA enhanced ($7.0:1$) legibility thresholds.
 
 ![Figure 5: Student Home Dashboard (Light & Dark Themes) and Incident Submission Form Workflow](fig5.png)
 
@@ -371,15 +371,15 @@ Running `dart analyze` across `lib/` and `test/` against `flutter_lints: ^5.0.0`
 
 1. **Native Pigeon Channel Error (`PlatformException(channel-error)`) During Google Sign-In Integration**:
    - *Symptom*: After adding `google_sign_in: ^7.2.0` to `pubspec.yaml` and triggering a Dart hot-reload (`r`), tapping **Continue with Google** on the Android emulator threw `PlatformException(channel-error, Unable to establish connection on channel: dev.flutter.pigeon.google_sign_in_android.GoogleSignInApi.getCredential)`.
-   - *Root Cause & Fix*: Flutter hot-reload injects updated Dart kernel snapshots into the Dart VM but does not compile new native Android Kotlin/Java plugin registrants into the running APK. Second, Google OAuth on Android requires the emulator's debug signing certificate fingerprint to be registered in Firebase. We extracted the debug keystore fingerprint (`SHA-1: DC:90:A1:26:B9:3A:E3:7F:9C:7F:59:AE:F4:00:35:0B:4E:35:17:82`), registered it in the Firebase Console, updated `android/app/google-services.json`, configured `GoogleSignIn.instance.initialize(serverClientId: _webClientId)` in `AuthService`, added a dedicated `PlatformException` catch block (lines 165–169), and executed a full native rebuild (`flutter clean && flutter pub get && flutter run`).
+   - *Root Cause & Fix*: Flutter hot-reload injects updated Dart kernel snapshots into the Dart VM but does not compile new native Android Kotlin/Java plugin registrants into the running APK. Second, Google OAuth on Android requires the emulator's debug signing certificate fingerprint to be registered in Firebase. We extracted the debug keystore fingerprint (`SHA-1: DC:90:A1:26:B9:3A:E3:7F:9C:7F:59:AE:F4:00:35:0B:4E:35:17:82`), registered it in the Firebase Console, updated `android/app/google-services.json`, configured `GoogleSignIn.instance.initialize(serverClientId: _webClientId)` in `AuthService`, added a dedicated `PlatformException` catch block (lines 165-169), and executed a full native rebuild (`flutter clean && flutter pub get && flutter run`).
 
 2. **Cross-Platform Photo Upload & CanvasKit CORS Rendering (`HTTP statusCode: 0`)**:
    - *Symptom*: While `ref.putFile(File(file.path))` worked on the Android emulator, testing on Chrome Web caused `dart:io File` exceptions and browser CORS blocks (`statusCode: 0`) when rendering Firebase Storage URLs inside CanvasKit.
-   - *Root Cause & Fix*: Updated `StorageService.uploadIncidentPhoto()` (`lib/services/storage_service.dart`, lines 49–67) to branch on `kIsWeb`: using `ref.putFile(File(file.path), metadata)` on mobile devices to stream directly from disk while using `ref.putData(bytes, metadata)` on Web, paired with a dedicated `IncidentImageView` widget (`lib/widgets/incident_image_view.dart`) that decodes both HTTPS Cloud Storage URLs and base64 Data URIs with automatic error placeholders.
+   - *Root Cause & Fix*: Updated `StorageService.uploadIncidentPhoto()` (`lib/services/storage_service.dart`, lines 49-67) to branch on `kIsWeb`: using `ref.putFile(File(file.path), metadata)` on mobile devices to stream directly from disk while using `ref.putData(bytes, metadata)` on Web, paired with a dedicated `IncidentImageView` widget (`lib/widgets/incident_image_view.dart`) that decodes both HTTPS Cloud Storage URLs and base64 Data URIs with automatic error placeholders.
 
 3. **Preventing Role-Routing UI Flicker on Session Bootstrap**:
    - *Symptom*: Because `FirebaseAuth.authStateChanges()` emits the cached `User` object several hundred milliseconds before the asynchronous Firestore `users/{uid}` read completes, an unguarded router briefly flashed the student screen before switching to the staff dashboard.
-   - *Root Cause & Fix*: Introduced a separate `_isInitializing` boolean in `AuthProvider` (`lib/providers/auth_provider.dart`, lines 10–51) that remains `true` until `getUserProfile(user.uid)` resolves, allowing `AuthGate` to hold a clean loading state until the exact role is known.
+   - *Root Cause & Fix*: Introduced a separate `_isInitializing` boolean in `AuthProvider` (`lib/providers/auth_provider.dart`, lines 10-51) that remains `true` until `getUserProfile(user.uid)` resolves, allowing `AuthGate` to hold a clean loading state until the exact role is known.
 
 ### 8.2 System Limitations and Future Production Roadmap
 
@@ -398,15 +398,15 @@ The 9-minute 57-second demonstration video walks through the running Android app
 
 | Timestamp | Walkthrough Segment & Rubric Verification |
 | :--- | :--- |
-| **0:00 – 1:15** | **Introduction, Codebase Architecture & Student Home**: Launching CampusCare on the Android emulator, inspecting `pubspec.yaml` and the 4-layer `lib/` structure in VS Code, and demonstrating the ALU Navy (`#002E6D`) & Crimson (`#D00D2D`) Student Home dashboard and Profile screen. |
-| **1:15 – 2:45** | **Submitting a Campus Incident with Photo Upload**: Opening *Report an Incident*, selecting a category from the 6-tile grid, picking an ALU campus location, entering fault details, attaching a photo from the device gallery, and submitting to Firebase. |
-| **2:45 – 3:35** | **Student "My Reports", Public Campus Feed Filtering & Sign-Out**: Verifying the newly created report under *My Reports*, testing live search and category filter chips on the Campus Feed, and signing out. |
-| **3:35 – 5:10** | **Institutional Authentication & Domain Validation**: Demonstrating the Login and Registration screens, triggering live validation errors with non-ALU emails, and signing in with an authorized `@alueducation.com` staff account. |
-| **5:10 – 6:50** | **Staff Triage Dashboard & Status Resolution Workflow**: Filtering the staff triage queue, opening the *Update Incident Status* modal, transitioning the student's report to `In Progress` and `Resolved` with a staff resolution note, and observing live counter updates. |
-| **6:50 – 8:00** | **"Continue with Google" OAuth 2.0 & Live Student Timeline Stepper**: Signing out of staff, authenticating via **Continue with Google**, and opening the student's Incident Details view to confirm the 3-node `StatusTimeline` stepper updated in real time. |
-| **8:00 – 8:55** | **Firebase Cloud Storage Console Verification**: Inspecting the live `incidents/` storage bucket in the browser and previewing the uploaded incident photograph. |
-| **8:55 – 9:25** | **Cloud Firestore Database Verification**: Inspecting the live `incidents` and `users` root collections and the nested `timeline` subcollection documents in the Firebase Console. |
-| **9:25 – 9:57** | **Firebase Authentication Console & Conclusion**: Showing the registered student and staff accounts and enabled Sign-In providers (Email/Password and Google OAuth 2.0). |
+| **0:00 - 1:15** | **Introduction, Codebase Architecture & Student Home**: Launching CampusCare on the Android emulator, inspecting `pubspec.yaml` and the 4-layer `lib/` structure in VS Code, and demonstrating the ALU Navy (`#002E6D`) & Crimson (`#D00D2D`) Student Home dashboard and Profile screen. |
+| **1:15 - 2:45** | **Submitting a Campus Incident with Photo Upload**: Opening *Report an Incident*, selecting a category from the 6-tile grid, picking an ALU campus location, entering fault details, attaching a photo from the device gallery, and submitting to Firebase. |
+| **2:45 - 3:35** | **Student "My Reports", Public Campus Feed Filtering & Sign-Out**: Verifying the newly created report under *My Reports*, testing live search and category filter chips on the Campus Feed, and signing out. |
+| **3:35 - 5:10** | **Institutional Authentication & Domain Validation**: Demonstrating the Login and Registration screens, triggering live validation errors with non-ALU emails, and signing in with an authorized `@alueducation.com` staff account. |
+| **5:10 - 6:50** | **Staff Triage Dashboard & Status Resolution Workflow**: Filtering the staff triage queue, opening the *Update Incident Status* modal, transitioning the student's report to `In Progress` and `Resolved` with a staff resolution note, and observing live counter updates. |
+| **6:50 - 8:00** | **"Continue with Google" OAuth 2.0 & Live Student Timeline Stepper**: Signing out of staff, authenticating via **Continue with Google**, and opening the student's Incident Details view to confirm the 3-node `StatusTimeline` stepper updated in real time. |
+| **8:00 - 8:55** | **Firebase Cloud Storage Console Verification**: Inspecting the live `incidents/` storage bucket in the browser and previewing the uploaded incident photograph. |
+| **8:55 - 9:25** | **Cloud Firestore Database Verification**: Inspecting the live `incidents` and `users` root collections and the nested `timeline` subcollection documents in the Firebase Console. |
+| **9:25 - 9:57** | **Firebase Authentication Console & Conclusion**: Showing the registered student and staff accounts and enabled Sign-In providers (Email/Password and Google OAuth 2.0). |
 
 ---
 
