@@ -48,7 +48,7 @@ class StatsSummaryCards extends StatelessWidget {
             _buildStatItem(
               context: context,
               icon: CupertinoIcons.doc_text_fill,
-              iconColor: const Color(0xFF6366F1),
+              iconColor: AppColors.aluRed,
               count: total,
               label: 'Total Reports',
             ),

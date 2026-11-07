@@ -6,6 +6,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/incident_provider.dart';
+import '../../widgets/alu_brand.dart';
 import '../../widgets/incident_card.dart';
 import '../../widgets/empty_state_view.dart';
 import '../student/incident_details_screen.dart';
@@ -128,7 +129,13 @@ class _StaffDashboardScreenState extends State<StaffDashboardScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Campus Staff Triage'),
+        title: const Row(
+          children: [
+            AluMark(size: 32, radius: 8),
+            SizedBox(width: 10),
+            Text('ALU Staff Triage'),
+          ],
+        ),
         actions: [
           IconButton(
             icon: const Icon(CupertinoIcons.person_crop_circle),

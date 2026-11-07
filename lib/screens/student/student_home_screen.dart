@@ -6,6 +6,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/incident_provider.dart';
+import '../../widgets/alu_brand.dart';
 import '../../widgets/stats_card.dart';
 import '../../widgets/incident_card.dart';
 import '../../widgets/empty_state_view.dart';
@@ -41,7 +42,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             MaterialPageRoute(builder: (_) => const CreateIncidentScreen()),
           );
         },
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.aluRed,
         elevation: 3,
         shape: const CircleBorder(),
         child: const Icon(CupertinoIcons.add, color: Colors.white, size: 28),
@@ -73,6 +74,9 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
     required int index,
   }) {
     final isSelected = _currentIndex == index;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final activeColor = isDark ? AppColors.aluRed : AppColors.aluNavy;
+    final inactiveColor = isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary;
     return InkWell(
       onTap: () {
         if (index == 3) {
@@ -94,7 +98,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
             Icon(
               icon,
               size: 22,
-              color: isSelected ? AppColors.primary : AppColors.lightTextSecondary,
+              color: isSelected ? activeColor : inactiveColor,
             ),
             const SizedBox(height: 2),
             Text(
@@ -102,7 +106,7 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
               style: TextStyle(
                 fontSize: 11,
                 fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                color: isSelected ? AppColors.primary : AppColors.lightTextSecondary,
+                color: isSelected ? activeColor : inactiveColor,
               ),
             ),
           ],
@@ -137,39 +141,48 @@ class _StudentDashboardTab extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Top Greeting & Avatar
+                // Top Brand Header & Greeting
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        Row(
+                        const AluMark(size: 42, radius: 10),
+                        const SizedBox(width: 12),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Row(
+                              children: [
+                                Text(
+                                  'Hello, $firstName',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: -0.4,
+                                    color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                  ),
+                                ),
+                                const SizedBox(width: 6),
+                                const Text('👋', style: TextStyle(fontSize: 20)),
+                              ],
+                            ),
+                            const SizedBox(height: 2),
                             Text(
-                              'Hello, $firstName',
+                              'ALU Kigali Campus Operations',
                               style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -0.4,
-                                color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
                               ),
                             ),
-                            const SizedBox(width: 6),
-                            const Text('👋', style: TextStyle(fontSize: 22)),
                           ],
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          'Help make our campus safer.\nReport issues and track their resolution.',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
-                          ),
                         ),
                       ],
                     ),
                     InkWell(
+                      borderRadius: BorderRadius.circular(24),
                       onTap: () {
                         Navigator.push(
                           context,
@@ -177,14 +190,14 @@ class _StudentDashboardTab extends StatelessWidget {
                         );
                       },
                       child: CircleAvatar(
-                        radius: 22,
-                        backgroundColor: AppColors.primary.withValues(alpha: 0.12),
+                        radius: 21,
+                        backgroundColor: AppColors.aluNavy,
                         child: Text(
                           firstName.isNotEmpty ? firstName[0].toUpperCase() : 'A',
                           style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.primary,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -193,62 +206,108 @@ class _StudentDashboardTab extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Blue Action Hero Banner matching Page 3 of PDF
+                // ALU Navy + Red Action Hero Banner
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF4F46E5), Color(0xFF6366F1)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    color: AppColors.aluNavy,
                     borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: isDark ? AppColors.darkBorder : AppColors.aluNavy,
+                      width: 1,
+                    ),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'See an issue\non campus?',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
-                          color: Colors.white,
-                          height: 1.2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Top ALU red signature stripe
+                        Container(
+                          height: 5,
+                          width: double.infinity,
+                          color: AppColors.aluRed,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Report it and help improve\nour learning environment.',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: Colors.white.withValues(alpha: 0.9),
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const CreateIncidentScreen()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: const Color(0xFF4F46E5),
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Expanded(
+                                    child: Text(
+                                      'See an issue\non campus?',
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white,
+                                        letterSpacing: -0.4,
+                                        height: 1.18,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.aluRed,
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: const Text(
+                                      'LIVE',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w800,
+                                        letterSpacing: 0.8,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Report broken facilities, water or power faults and track resolution directly with campus staff.',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  height: 1.4,
+                                  color: Colors.white.withValues(alpha: 0.85),
+                                ),
+                              ),
+                              const SizedBox(height: 18),
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => const CreateIncidentScreen()),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: AppColors.aluNavy,
+                                  elevation: 0,
+                                  padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                icon: const Icon(
+                                  CupertinoIcons.plus_circle_fill,
+                                  size: 18,
+                                  color: AppColors.aluRed,
+                                ),
+                                label: const Text(
+                                  'Report an Issue',
+                                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        icon: const Icon(CupertinoIcons.plus_circle_fill, size: 18),
-                        label: const Text(
-                          'Report an Issue',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 24),
@@ -294,10 +353,12 @@ class _StudentDashboardTab extends StatelessWidget {
                 const SizedBox(height: 10),
 
                 if (snapshot.connectionState == ConnectionState.waiting)
-                  const Center(child: Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: CupertinoActivityIndicator(),
-                  ))
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: CupertinoActivityIndicator(),
+                    ),
+                  )
                 else if (allIncidents.isEmpty)
                   const EmptyStateView(
                     title: 'No reports yet',

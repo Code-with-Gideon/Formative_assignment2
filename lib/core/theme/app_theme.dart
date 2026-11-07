@@ -51,7 +51,7 @@ class AppTheme {
         seedColor: AppColors.primaryLight,
         brightness: Brightness.dark,
         primary: AppColors.primaryLight,
-        secondary: AppColors.accentSoft,
+        secondary: AppColors.accent,
         surface: AppColors.darkSurface,
       ),
     );

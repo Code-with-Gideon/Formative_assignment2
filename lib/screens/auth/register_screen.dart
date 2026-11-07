@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/utils/validators.dart';
 import '../../providers/auth_provider.dart';
+import '../../widgets/alu_brand.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
 import '../../widgets/google_sign_in_button.dart';
@@ -161,18 +162,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
-                      'Join CampusCare',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.5,
-                        color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
-                      ),
+                    Row(
+                      children: [
+                        const AluMark(size: 40, radius: 10),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Join ALU CampusCare',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -0.5,
+                                  color: isDark ? AppColors.darkTextPrimary : AppColors.lightTextPrimary,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              const AluSplitBar(width: 32, height: 5),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 12),
                     Text(
-                      'One unified portal. Your account type is automatically determined by your institutional email.',
+                      'One unified portal. Your account role is automatically assigned from your institutional email.',
                       style: TextStyle(
                         fontSize: 13,
                         color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
