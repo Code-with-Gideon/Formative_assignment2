@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -161,6 +162,11 @@ class AuthService {
         return null; // User simply closed the account picker
       }
       throw 'Google Sign-In canceled or unavailable: ${e.description ?? e.code.name}';
+    } on PlatformException catch (e) {
+      if (e.code == 'channel-error') {
+        throw 'Native plugin not compiled into running APK. Please stop the app and rebuild with "flutter run".';
+      }
+      throw 'Google Sign-In platform error: ${e.message ?? e.code}';
     } on FirebaseAuthException catch (e) {
       throw _parseAuthError(e);
     } catch (e) {
