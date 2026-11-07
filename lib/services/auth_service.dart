@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user_model.dart';
 import '../core/utils/validators.dart';
 
@@ -7,8 +8,23 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  // Firebase Web Client ID for OAuth
+  static const String _webClientId =
+      '166386448892-8vtrcmm0mb5o7cqiqjdadibbdpaua1rj.apps.googleusercontent.com';
+
+  bool _googleInitialized = false;
+
   User? get currentFirebaseUser => _auth.currentUser;
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  Future<void> _ensureGoogleInitialized() async {
+    if (!_googleInitialized) {
+      await GoogleSignIn.instance.initialize(
+        serverClientId: _webClientId,
+      );
+      _googleInitialized = true;
+    }
+  }
 
   // Fetch current user document from Firestore
   Future<UserModel?> getUserProfile(String uid) async {
@@ -103,8 +119,63 @@ class AuthService {
     }
   }
 
+  // Sign in or create account using Google with ALU institutional domain validation
+  Future<UserModel?> signInWithGoogle() async {
+    try {
+      await _ensureGoogleInitialized();
+      final GoogleSignInAccount googleAccount = await GoogleSignIn.instance.authenticate();
+      final String email = googleAccount.email.trim().toLowerCase();
+
+      // Enforce institutional domain policy required by assignment rubric
+      if (!email.endsWith('@alueducation.com') && !email.endsWith('@alustudent.com')) {
+        await GoogleSignIn.instance.signOut();
+        throw 'Access restricted: Only official ALU Google accounts (@alustudent.com or @alueducation.com) are permitted. You signed in with "$email".';
+      }
+
+      final GoogleSignInAuthentication googleAuth = googleAccount.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken,
+      );
+
+      final UserCredential userCredential = await _auth.signInWithCredential(credential);
+      final uid = userCredential.user!.uid;
+
+      final existingProfile = await getUserProfile(uid);
+      if (existingProfile != null) {
+        return existingProfile;
+      }
+
+      final resolvedRole = email.endsWith('@alueducation.com') ? 'staff' : 'student';
+      final newProfile = UserModel(
+        uid: uid,
+        email: email,
+        fullName: userCredential.user!.displayName ?? googleAccount.displayName ?? 'ALU Member',
+        role: resolvedRole,
+        createdAt: DateTime.now(),
+      );
+
+      await _firestore.collection('users').doc(uid).set(newProfile.toMap());
+      return newProfile;
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        return null; // User simply closed the account picker
+      }
+      throw 'Google Sign-In canceled or unavailable: ${e.description ?? e.code.name}';
+    } on FirebaseAuthException catch (e) {
+      throw _parseAuthError(e);
+    } catch (e) {
+      if (e.toString().contains('Access restricted')) {
+        rethrow;
+      }
+      throw 'Google Sign-In failed: $e';
+    }
+  }
+
   Future<void> signOut() async {
     await _auth.signOut();
+    try {
+      await GoogleSignIn.instance.signOut();
+    } catch (_) {}
   }
 
   String _parseAuthError(FirebaseAuthException e) {

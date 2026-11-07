@@ -7,6 +7,7 @@ import '../../providers/auth_provider.dart';
 import '../../providers/theme_provider.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_text_field.dart';
+import '../../widgets/google_sign_in_button.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
   bool _isSubmitting = false;
+  bool _isGoogleSubmitting = false;
 
   @override
   void dispose() {
@@ -53,6 +55,29 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: Colors.redAccent,
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 4),
+        ),
+      );
+    }
+  }
+
+  void _handleGoogleSignIn() async {
+    FocusScope.of(context).unfocus();
+    setState(() => _isGoogleSubmitting = true);
+
+    final authProvider = context.read<AuthProvider>();
+    final success = await authProvider.signInWithGoogle();
+
+    if (!mounted) return;
+    setState(() => _isGoogleSubmitting = false);
+
+    if (!success && authProvider.errorMessage != null) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(authProvider.errorMessage!),
+          backgroundColor: Colors.redAccent,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 5),
         ),
       );
     }
@@ -158,9 +183,47 @@ class _LoginScreenState extends State<LoginScreen> {
                     CustomButton(
                       label: 'Sign In',
                       isLoading: _isSubmitting,
-                      onPressed: _submit,
+                      onPressed: _isGoogleSubmitting ? null : _submit,
                     ),
                     const SizedBox(height: 20),
+
+                    // Or Divider
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(
+                            color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                            thickness: 1,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 14),
+                          child: Text(
+                            'OR',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1.0,
+                              color: isDark ? AppColors.darkTextSecondary : AppColors.lightTextSecondary,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Divider(
+                            color: isDark ? AppColors.darkBorder : AppColors.lightBorder,
+                            thickness: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Google Sign-In Button
+                    GoogleSignInButton(
+                      isLoading: _isGoogleSubmitting,
+                      onPressed: _isSubmitting || _isGoogleSubmitting ? null : _handleGoogleSignIn,
+                    ),
+                    const SizedBox(height: 24),
 
                     // Register Link
                     Row(
