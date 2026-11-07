@@ -52,3 +52,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Submission report deliverables (never commit Word/PDF exports to repo)
+*.docx
+*.pdf
